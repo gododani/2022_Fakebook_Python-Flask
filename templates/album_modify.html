@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Fakebook - album{% endblock %}
+
+{% block content %}
+{% if album %}
+<!---------- ALBUM MODAL ---------->
+<div class="modal-album">
+    <div class="card">
+        <h2>{{album[2]}}</h2>
+        <p class="text-muted">Photos in this album</p>
+        <div class="bg-secondary-soft px-4 py-5 rounded">
+            {% if albumImages %}
+            {% for image in albumImages %}
+            <!-- Image 1 -->
+            <div class="card">
+                <img src="../static/images/user-images/{{image[1]}}" alt="Picture">
+                <span>{{image[2]}}</span>
+                <div class="buttons">
+                    <form action="{{url_for('delete_image_from_album')}}" method="POST"><button class="card-delete" type="submit" name="album-image-delete-id" id="album-image-delete-id" value="{{image[0]}}">Delete</button></form>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="margin"></div>
+        <form class="album-form" action="{{url_for('add_image_to_album')}}" method="POST">
+            <h4>Add new photo to this album</h4>
+            <div class="bg-secondary-soft px-4 py-5 rounded">
+                <div class="row">
+                    <div class="row-element">
+                        <label class="form-label" for="add-photo-title">Image title</label>
+                        <input type="text" class="form-control" name="add-photo-title" id="add-photo-title" placeholder="Image title" aria-label="Image title">
+                    </div>
+                </div>
+                <button type="submit" name="album-id" id="album-id" value="{{album[0]}}">Add photo</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

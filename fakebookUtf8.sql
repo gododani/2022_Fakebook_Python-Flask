@@ -1,0 +1,1143 @@
+--------------------------------------------------------
+--  File created - hétfő-május-02-2022   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Sequence ALBUM_KEPEK_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "ALBUM_KEPEK_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 31 CACHE 10 NOORDER  NOCYCLE   ;
+--------------------------------------------------------
+--  DDL for Sequence ALBUMOK_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "ALBUMOK_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 11 CACHE 10 NOORDER  NOCYCLE   ;
+--------------------------------------------------------
+--  DDL for Sequence CSOPORTOK_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "CSOPORTOK_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 11 CACHE 10 NOORDER  NOCYCLE   ;
+--------------------------------------------------------
+--  DDL for Sequence CSOPORT_TAGOK_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "CSOPORT_TAGOK_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 41 CACHE 10 NOORDER  NOCYCLE   ;
+--------------------------------------------------------
+--  DDL for Sequence FELHASZN_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "FELHASZN_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 10 NOORDER  NOCYCLE   ;
+--------------------------------------------------------
+--  DDL for Sequence FELTOLTOTT_KEPEK_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "FELTOLTOTT_KEPEK_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 31 CACHE 10 NOORDER  NOCYCLE   ;
+--------------------------------------------------------
+--  DDL for Sequence PROFIL_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "PROFIL_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 10 NOORDER  NOCYCLE   ;
+--------------------------------------------------------
+--  DDL for Sequence SEQ_ISMEROSOK_ID
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "SEQ_ISMEROSOK_ID"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 41 CACHE 10 NOORDER  NOCYCLE   ;
+--------------------------------------------------------
+--  DDL for Table ALBUM_KEPEK
+--------------------------------------------------------
+
+  CREATE TABLE "ALBUM_KEPEK" 
+   (	"ID" NUMBER, 
+	"KEP_ID" NUMBER, 
+	"ALBUM_ID" NUMBER
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table ALBUMOK
+--------------------------------------------------------
+
+  CREATE TABLE "ALBUMOK" 
+   (	"ID" NUMBER, 
+	"PROFIL_ID" NUMBER, 
+	"CIM" VARCHAR2(100 BYTE), 
+	"LETREHOZVA" DATE, 
+	"INDEX_KEP" VARCHAR2(40 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table CSOPORTOK
+--------------------------------------------------------
+
+  CREATE TABLE "CSOPORTOK" 
+   (	"ID" NUMBER(*,0), 
+	"CSOPORT_NEV" VARCHAR2(40 BYTE), 
+	"LEIRAS" VARCHAR2(1000 BYTE), 
+	"INDEX_KEP" VARCHAR2(50 BYTE), 
+	"ALAPITAS_DATUM" DATE, 
+	"TULAJ" NUMBER
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table CSOPORT_TAGOK
+--------------------------------------------------------
+
+  CREATE TABLE "CSOPORT_TAGOK" 
+   (	"ID" NUMBER(*,0), 
+	"PROFIL_ID" NUMBER(*,0), 
+	"CSOPORT_ID" NUMBER(*,0), 
+	"SZEREP" VARCHAR2(20 BYTE), 
+	"ELFOGADOTT" NUMBER(*,0), 
+	"MIOTA" DATE
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table CSOPORT_UZENETEK
+--------------------------------------------------------
+
+  CREATE TABLE "CSOPORT_UZENETEK" 
+   (	"ID" NUMBER, 
+	"KULDO" NUMBER, 
+	"FOGADO_CSOPORT" NUMBER, 
+	"MIKOR" DATE, 
+	"OLVASOTT" NUMBER, 
+	"UZENET" VARCHAR2(500 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table ENGEDELYEK
+--------------------------------------------------------
+
+  CREATE TABLE "ENGEDELYEK" 
+   (	"ID" NUMBER, 
+	"KULDO" NUMBER, 
+	"FOGADO" NUMBER, 
+	"ELFOGADOTT" VARCHAR2(20 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table FELHASZNALOK
+--------------------------------------------------------
+
+  CREATE TABLE "FELHASZNALOK" 
+   (	"ID" NUMBER(*,0), 
+	"FELHASZNALO_NEV" VARCHAR2(50 BYTE), 
+	"JELSZO" VARCHAR2(32 BYTE), 
+	"EMAIL" VARCHAR2(50 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table FELTOLTOTT_KEPEK
+--------------------------------------------------------
+
+  CREATE TABLE "FELTOLTOTT_KEPEK" 
+   (	"ID" NUMBER(*,0), 
+	"PROFIL_ID" NUMBER(*,0), 
+	"KEP_NEV" VARCHAR2(30 BYTE), 
+	"MIKOR" DATE, 
+	"KEP_LEIRAS" VARCHAR2(500 BYTE), 
+	"FOGLALT_TARHELY" NUMBER
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table ISMEROSOK
+--------------------------------------------------------
+
+  CREATE TABLE "ISMEROSOK" 
+   (	"ID" NUMBER(*,0), 
+	"KULDO" NUMBER(*,0), 
+	"FOGADO" NUMBER(*,0), 
+	"FUGGOBEN" VARCHAR2(20 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table KEP_MEGJEGYZESEK
+--------------------------------------------------------
+
+  CREATE TABLE "KEP_MEGJEGYZESEK" 
+   (	"ID" NUMBER(*,0), 
+	"KEP_ID" NUMBER(*,0), 
+	"PROFIL_ID" NUMBER(*,0), 
+	"HOZZASZOLAS" VARCHAR2(500 BYTE), 
+	"MIKOR" DATE, 
+	"OSMEGJEGYZES_ID" NUMBER
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table NEVNAPOK
+--------------------------------------------------------
+
+  CREATE TABLE "NEVNAPOK" 
+   (	"ID" NUMBER, 
+	"KERESZTNEV" VARCHAR2(20 BYTE), 
+	"HONAP" NUMBER, 
+	"NAP" NUMBER
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table PRIVAT_UZENETEK
+--------------------------------------------------------
+
+  CREATE TABLE "PRIVAT_UZENETEK" 
+   (	"ID" NUMBER(*,0), 
+	"KULDO" NUMBER(*,0), 
+	"FOGADO" NUMBER(*,0), 
+	"MIKOR" DATE, 
+	"OLVASOTT" NUMBER(*,0), 
+	"UZENET" VARCHAR2(500 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table PROFIL_MEGJEGYZESEK
+--------------------------------------------------------
+
+  CREATE TABLE "PROFIL_MEGJEGYZESEK" 
+   (	"ID" NUMBER, 
+	"KULDO" NUMBER, 
+	"FOGADO" NUMBER, 
+	"OSMEGYJEGYZES_ID" NUMBER, 
+	"MEGYJEGY_DATUM" DATE, 
+	"MEGJEGYZES" VARCHAR2(200 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Table PROFILOK
+--------------------------------------------------------
+
+  CREATE TABLE "PROFILOK" 
+   (	"ID" NUMBER(*,0), 
+	"FELHASZNALO_ID" NUMBER(*,0), 
+	"VEZETEKNEV" VARCHAR2(30 BYTE), 
+	"KERESZTNEV" VARCHAR2(30 BYTE), 
+	"NEME" VARCHAR2(15 BYTE), 
+	"SZULNAP" DATE, 
+	"PROFIL_KEP" VARCHAR2(50 BYTE), 
+	"VAROS" VARCHAR2(30 BYTE), 
+	"MEGYE" VARCHAR2(40 BYTE), 
+	"ISKOLA" VARCHAR2(50 BYTE), 
+	"MUNKAHELY" VARCHAR2(50 BYTE), 
+	"REG_DATUM" DATE
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+REM INSERTING into ALBUM_KEPEK
+SET DEFINE OFF;
+Insert into ALBUM_KEPEK (ID,KEP_ID,ALBUM_ID) values ('21','19','8');
+Insert into ALBUM_KEPEK (ID,KEP_ID,ALBUM_ID) values ('22','20','8');
+Insert into ALBUM_KEPEK (ID,KEP_ID,ALBUM_ID) values ('1','3','1');
+Insert into ALBUM_KEPEK (ID,KEP_ID,ALBUM_ID) values ('3','4','1');
+Insert into ALBUM_KEPEK (ID,KEP_ID,ALBUM_ID) values ('4','2','1');
+Insert into ALBUM_KEPEK (ID,KEP_ID,ALBUM_ID) values ('2','1','1');
+Insert into ALBUM_KEPEK (ID,KEP_ID,ALBUM_ID) values ('5','5','2');
+Insert into ALBUM_KEPEK (ID,KEP_ID,ALBUM_ID) values ('6','6','2');
+Insert into ALBUM_KEPEK (ID,KEP_ID,ALBUM_ID) values ('7','7','2');
+Insert into ALBUM_KEPEK (ID,KEP_ID,ALBUM_ID) values ('13','14','5');
+Insert into ALBUM_KEPEK (ID,KEP_ID,ALBUM_ID) values ('19','17','7');
+Insert into ALBUM_KEPEK (ID,KEP_ID,ALBUM_ID) values ('16','16','6');
+Insert into ALBUM_KEPEK (ID,KEP_ID,ALBUM_ID) values ('17','15','6');
+Insert into ALBUM_KEPEK (ID,KEP_ID,ALBUM_ID) values ('20','18','7');
+Insert into ALBUM_KEPEK (ID,KEP_ID,ALBUM_ID) values ('8','10','3');
+Insert into ALBUM_KEPEK (ID,KEP_ID,ALBUM_ID) values ('9','9','3');
+Insert into ALBUM_KEPEK (ID,KEP_ID,ALBUM_ID) values ('10','8','3');
+Insert into ALBUM_KEPEK (ID,KEP_ID,ALBUM_ID) values ('11','11','4');
+Insert into ALBUM_KEPEK (ID,KEP_ID,ALBUM_ID) values ('12','12','4');
+Insert into ALBUM_KEPEK (ID,KEP_ID,ALBUM_ID) values ('18','13','5');
+REM INSERTING into ALBUMOK
+SET DEFINE OFF;
+Insert into ALBUMOK (ID,PROFIL_ID,CIM,LETREHOZVA,INDEX_KEP) values ('8','14','Képeim5',to_date('2022-05-02 14:30:16','YYYY-MM-DD HH24:MI:SS'),'albumImage-14-8.jpg');
+Insert into ALBUMOK (ID,PROFIL_ID,CIM,LETREHOZVA,INDEX_KEP) values ('1','1','Filmek',to_date('2022-05-02 12:51:32','YYYY-MM-DD HH24:MI:SS'),'albumImage-1-1.jpg');
+Insert into ALBUMOK (ID,PROFIL_ID,CIM,LETREHOZVA,INDEX_KEP) values ('2','2','Backgrounds',to_date('2022-05-02 12:56:39','YYYY-MM-DD HH24:MI:SS'),'albumImage-2-2.jpg');
+Insert into ALBUMOK (ID,PROFIL_ID,CIM,LETREHOZVA,INDEX_KEP) values ('5','5','Képeim',to_date('2022-05-02 14:21:27','YYYY-MM-DD HH24:MI:SS'),'albumImage-5-5.jpg');
+Insert into ALBUMOK (ID,PROFIL_ID,CIM,LETREHOZVA,INDEX_KEP) values ('6','6','Képeim',to_date('2022-05-02 14:22:50','YYYY-MM-DD HH24:MI:SS'),'albumImage-6-6.jpg');
+Insert into ALBUMOK (ID,PROFIL_ID,CIM,LETREHOZVA,INDEX_KEP) values ('7','8','Képeim4',to_date('2022-05-02 14:29:06','YYYY-MM-DD HH24:MI:SS'),'albumImage-8-7.jpg');
+Insert into ALBUMOK (ID,PROFIL_ID,CIM,LETREHOZVA,INDEX_KEP) values ('9','15','Képeim6',to_date('2022-05-02 14:41:29','YYYY-MM-DD HH24:MI:SS'),'albumImage-15-9.jpg');
+Insert into ALBUMOK (ID,PROFIL_ID,CIM,LETREHOZVA,INDEX_KEP) values ('3','3','Backgrounds',to_date('2022-05-02 13:09:07','YYYY-MM-DD HH24:MI:SS'),'albumImage-3-3.png');
+Insert into ALBUMOK (ID,PROFIL_ID,CIM,LETREHOZVA,INDEX_KEP) values ('4','13','Képeim',to_date('2022-05-02 14:20:05','YYYY-MM-DD HH24:MI:SS'),'albumImage-13-4.jpg');
+REM INSERTING into CSOPORTOK
+SET DEFINE OFF;
+Insert into CSOPORTOK (ID,CSOPORT_NEV,LEIRAS,INDEX_KEP,ALAPITAS_DATUM,TULAJ) values ('3','Best Group','Best Group','groupImage-3-2.jpg',to_date('2022-05-02 13:06:06','YYYY-MM-DD HH24:MI:SS'),'3');
+Insert into CSOPORTOK (ID,CSOPORT_NEV,LEIRAS,INDEX_KEP,ALAPITAS_DATUM,TULAJ) values ('6','És megint egy csoport','Leírás? Minek az','groupImage-15-6.jpg',to_date('2022-05-02 14:39:42','YYYY-MM-DD HH24:MI:SS'),'15');
+Insert into CSOPORTOK (ID,CSOPORT_NEV,LEIRAS,INDEX_KEP,ALAPITAS_DATUM,TULAJ) values ('4','The Walking Deads','Deathly','groupImage-7-4.png',to_date('2022-05-02 13:31:44','YYYY-MM-DD HH24:MI:SS'),'7');
+Insert into CSOPORTOK (ID,CSOPORT_NEV,LEIRAS,INDEX_KEP,ALAPITAS_DATUM,TULAJ) values ('5','Egy újabb csoport','Jó buli a csoportozás!','groupImage-14-5.jpg',to_date('2022-05-02 14:37:01','YYYY-MM-DD HH24:MI:SS'),'14');
+Insert into CSOPORTOK (ID,CSOPORT_NEV,LEIRAS,INDEX_KEP,ALAPITAS_DATUM,TULAJ) values ('1','Ez egy csoport!','Film kibeszélő','groupImage-1-1.png',to_date('2022-05-02 12:51:10','YYYY-MM-DD HH24:MI:SS'),'1');
+REM INSERTING into CSOPORT_TAGOK
+SET DEFINE OFF;
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('2','3','3','Admin','1',to_date('2022-05-02 13:06:06','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('6','3','1','Tag','1',to_date('2022-05-02 13:10:59','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('9','2','4','Tag','1',to_date('2022-05-02 13:32:00','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('10','3','4','Tag','1',to_date('2022-05-02 13:32:10','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('11','9','4','Tag','1',to_date('2022-05-02 13:32:22','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('12','10','4','Tag','1',to_date('2022-05-02 13:33:05','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('7','7','4','Admin','1',to_date('2022-05-02 13:31:44','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('8','1','4','Tag','1',to_date('2022-05-02 13:31:51','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('13','13','1','Tag','1',to_date('2022-05-02 14:12:38','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('14','9','1','Tag','1',to_date('2022-05-02 14:12:46','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('15','10','1','Tag','1',to_date('2022-05-02 14:12:56','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('16','6','1','Tag','1',to_date('2022-05-02 14:13:11','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('17','7','1','Tag','1',to_date('2022-05-02 14:13:17','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('18','8','1','Tag','1',to_date('2022-05-02 14:13:28','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('19','14','1','Tag','1',to_date('2022-05-02 14:13:42','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('20','15','1','Tag','1',to_date('2022-05-02 14:13:49','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('21','16','1','Tag','1',to_date('2022-05-02 14:13:57','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('22','14','5','Admin','1',to_date('2022-05-02 14:37:01','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('23','1','5','Tag','1',to_date('2022-05-02 14:37:09','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('24','2','5','Tag','1',to_date('2022-05-02 14:37:16','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('25','1','5','Tag','1',to_date('2022-05-02 14:37:22','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('26','5','5','Tag','1',to_date('2022-05-02 14:37:29','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('27','13','5','Tag','1',to_date('2022-05-02 14:37:41','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('28','16','5','Tag','1',to_date('2022-05-02 14:37:48','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('29','8','5','Tag','1',to_date('2022-05-02 14:38:07','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('30','15','6','Admin','1',to_date('2022-05-02 14:39:42','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('31','1','6','Tag','1',to_date('2022-05-02 14:39:52','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('33','3','6','Tag','1',to_date('2022-05-02 14:40:38','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('34','5','6','Tag','1',to_date('2022-05-02 14:40:44','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('35','14','6','Tag','1',to_date('2022-05-02 14:40:50','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('3','2','3','Tag','1',to_date('2022-05-02 13:07:03','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('5','2','1','Tag','1',to_date('2022-05-02 13:10:50','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('4','1','3','Tag','1',to_date('2022-05-02 13:07:10','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('36','13','6','Tag','1',to_date('2022-05-02 14:40:57','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('1','1','1','Admin','1',to_date('2022-05-02 12:51:10','YYYY-MM-DD HH24:MI:SS'));
+Insert into CSOPORT_TAGOK (ID,PROFIL_ID,CSOPORT_ID,SZEREP,ELFOGADOTT,MIOTA) values ('32','2','6','Tag','1',to_date('2022-05-02 14:40:31','YYYY-MM-DD HH24:MI:SS'));
+REM INSERTING into CSOPORT_UZENETEK
+SET DEFINE OFF;
+Insert into CSOPORT_UZENETEK (ID,KULDO,FOGADO_CSOPORT,MIKOR,OLVASOTT,UZENET) values ('1','2','1',to_date('2022-03-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),'1','Szevasztok csináljuk az adatbázist mostmár');
+Insert into CSOPORT_UZENETEK (ID,KULDO,FOGADO_CSOPORT,MIKOR,OLVASOTT,UZENET) values ('2','3','1',to_date('2022-03-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),'1','ok hívlak dc');
+Insert into CSOPORT_UZENETEK (ID,KULDO,FOGADO_CSOPORT,MIKOR,OLVASOTT,UZENET) values ('3','1','1',to_date('2022-03-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),'1','mek én is');
+Insert into CSOPORT_UZENETEK (ID,KULDO,FOGADO_CSOPORT,MIKOR,OLVASOTT,UZENET) values ('4','3','1',to_date('2022-03-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),'1','ok');
+REM INSERTING into ENGEDELYEK
+SET DEFINE OFF;
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('2','1','11','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('3','2','12','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('4','2','13','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('5','3','5','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('6','3','6','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('7','4','14','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('8','4','15','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('9','5','16','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('10','8','5','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('11','8','6','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('12','9','8','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('13','10','16','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('14','11','1','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('15','11','2','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('16','12','1','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('17','12','2','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('18','13','10','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('19','13','11','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('20','14','2','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('21','14','3','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('22','15','4','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('23','15','5','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('24','16','8','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('25','16','9','függőben');
+Insert into ENGEDELYEK (ID,KULDO,FOGADO,ELFOGADOTT) values ('1','1','10','függőben');
+REM INSERTING into FELHASZNALOK
+SET DEFINE OFF;
+Insert into FELHASZNALOK (ID,FELHASZNALO_NEV,JELSZO,EMAIL) values ('11','samsung','Asd123','samsung@gmail.com');
+Insert into FELHASZNALOK (ID,FELHASZNALO_NEV,JELSZO,EMAIL) values ('1','lengyeln','Asd12345','lengyelnorbi5@gmail.com');
+Insert into FELHASZNALOK (ID,FELHASZNALO_NEV,JELSZO,EMAIL) values ('10','tancoslabu','Asd123','tancoslabu@gmail.com');
+Insert into FELHASZNALOK (ID,FELHASZNALO_NEV,JELSZO,EMAIL) values ('12','valami','Asd123','valami@gmail.com');
+Insert into FELHASZNALOK (ID,FELHASZNALO_NEV,JELSZO,EMAIL) values ('2','gododani','Asd123','gododani@gmail.com');
+Insert into FELHASZNALOK (ID,FELHASZNALO_NEV,JELSZO,EMAIL) values ('4','admin','Asd12345','admin@gmail.com');
+Insert into FELHASZNALOK (ID,FELHASZNALO_NEV,JELSZO,EMAIL) values ('5','katica','Asd123','katica@gmail.com');
+Insert into FELHASZNALOK (ID,FELHASZNALO_NEV,JELSZO,EMAIL) values ('3','lizaeleklel','Asd123','lizaeleklel@gmail.com');
+Insert into FELHASZNALOK (ID,FELHASZNALO_NEV,JELSZO,EMAIL) values ('6','almafa','Asd123','almafa@gmail.com');
+Insert into FELHASZNALOK (ID,FELHASZNALO_NEV,JELSZO,EMAIL) values ('7','kemenypite','Asd123','kemenypite@gmail.com');
+Insert into FELHASZNALOK (ID,FELHASZNALO_NEV,JELSZO,EMAIL) values ('8','oroszlan','Asd123','oroszlan@gmail.com');
+Insert into FELHASZNALOK (ID,FELHASZNALO_NEV,JELSZO,EMAIL) values ('9','beka','Asd123','beka@gmail.com');
+Insert into FELHASZNALOK (ID,FELHASZNALO_NEV,JELSZO,EMAIL) values ('13','kecskefajzat','Asd123','kecskefajzat@gmail.com');
+Insert into FELHASZNALOK (ID,FELHASZNALO_NEV,JELSZO,EMAIL) values ('14','csillag','Asd123','csillag@gmail.com');
+Insert into FELHASZNALOK (ID,FELHASZNALO_NEV,JELSZO,EMAIL) values ('15','szandimandi','Asd123','szandimandi@gmail.com');
+Insert into FELHASZNALOK (ID,FELHASZNALO_NEV,JELSZO,EMAIL) values ('16','spongyabob','Asd123','spongyabob@gmail.com');
+REM INSERTING into FELTOLTOTT_KEPEK
+SET DEFINE OFF;
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('20','14','userImage-14-20.jpg',to_date('2022-05-02 14:30:06','YYYY-MM-DD HH24:MI:SS'),'Még egy background5','3098');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('3','1','userImage-1-3.png',to_date('2022-05-02 12:52:17','YYYY-MM-DD HH24:MI:SS'),'Venom','1014676');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('4','1','userImage-1-4.jpg',to_date('2022-05-02 12:52:34','YYYY-MM-DD HH24:MI:SS'),'Inception','83370');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('1','1','userImage-1-1.jpg',to_date('2022-05-02 12:51:55','YYYY-MM-DD HH24:MI:SS'),'City of Gold','78883');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('2','1','userImage-1-2.png',to_date('2022-05-02 12:52:06','YYYY-MM-DD HH24:MI:SS'),'Endgame','104479');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('7','2','userImage-2-7.jpg',to_date('2022-05-02 12:57:24','YYYY-MM-DD HH24:MI:SS'),'City','142154');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('11','13','userImage-13-11.jpg',to_date('2022-05-02 14:19:39','YYYY-MM-DD HH24:MI:SS'),'Első képem','8073');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('12','13','userImage-13-12.jpg',to_date('2022-05-02 14:19:51','YYYY-MM-DD HH24:MI:SS'),'Background','9099');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('15','6','userImage-6-15.jpg',to_date('2022-05-02 14:22:34','YYYY-MM-DD HH24:MI:SS'),'Background2','7608');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('16','6','userImage-6-16.jpg',to_date('2022-05-02 14:23:03','YYYY-MM-DD HH24:MI:SS'),'Még egy background','5060');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('17','8','userImage-8-17.jpg',to_date('2022-05-02 14:28:33','YYYY-MM-DD HH24:MI:SS'),'Background4','6806');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('18','8','userImage-8-18.jpg',to_date('2022-05-02 14:28:46','YYYY-MM-DD HH24:MI:SS'),'Még egy background4','8092');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('19','14','userImage-14-19.jpg',to_date('2022-05-02 14:29:58','YYYY-MM-DD HH24:MI:SS'),'Background5','12947');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('21','15','userImage-15-21.jpg',to_date('2022-05-02 14:41:38','YYYY-MM-DD HH24:MI:SS'),'Background6','104848');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('22','15','userImage-15-22.jpg',to_date('2022-05-02 14:41:49','YYYY-MM-DD HH24:MI:SS'),'Még egy background6','3330');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('8','3','userImage-3-8.png',to_date('2022-05-02 13:08:36','YYYY-MM-DD HH24:MI:SS'),'Night','61783');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('10','3','userImage-3-10.png',to_date('2022-05-02 13:08:57','YYYY-MM-DD HH24:MI:SS'),'Panda','49047');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('9','3','userImage-3-9.png',to_date('2022-05-02 13:08:46','YYYY-MM-DD HH24:MI:SS'),'Red Moon','10357');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('13','5','userImage-5-13.jpg',to_date('2022-05-02 14:20:53','YYYY-MM-DD HH24:MI:SS'),'Background3','9099');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('5','2','userImage-2-5.jpg',to_date('2022-05-02 12:56:05','YYYY-MM-DD HH24:MI:SS'),'Ünnep','100411');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('6','2','userImage-2-6.jpg',to_date('2022-05-02 12:56:18','YYYY-MM-DD HH24:MI:SS'),'Tavasz','130472');
+Insert into FELTOLTOTT_KEPEK (ID,PROFIL_ID,KEP_NEV,MIKOR,KEP_LEIRAS,FOGLALT_TARHELY) values ('14','5','userImage-5-14.jpg',to_date('2022-05-02 14:21:17','YYYY-MM-DD HH24:MI:SS'),'Még egy background3','4508');
+REM INSERTING into ISMEROSOK
+SET DEFINE OFF;
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('2','3','2','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('3','3','1','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('4','4','1','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('5','4','2','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('6','4','3','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('7','4','9','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('8','4','10','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('9','4','5','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('10','4','6','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('11','4','7','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('12','4','8','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('13','6','7','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('14','6','8','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('15','6','5','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('16','6','1','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('17','6','2','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('18','6','3','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('19','6','10','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('20','5','1','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('21','5','2','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('22','5','3','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('23','5','10','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('24','5','8','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('25','5','7','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('26','13','3','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('27','13','1','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('28','13','2','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('29','15','2','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('30','15','1','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('1','2','1','elfogadott');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('31','15','3','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('32','15','4','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('33','15','5','függőben');
+Insert into ISMEROSOK (ID,KULDO,FOGADO,FUGGOBEN) values ('34','15','14','függőben');
+REM INSERTING into KEP_MEGJEGYZESEK
+SET DEFINE OFF;
+Insert into KEP_MEGJEGYZESEK (ID,KEP_ID,PROFIL_ID,HOZZASZOLAS,MIKOR,OSMEGJEGYZES_ID) values ('1','3','1','Ez egy jó kép',to_date('2022-03-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),null);
+Insert into KEP_MEGJEGYZESEK (ID,KEP_ID,PROFIL_ID,HOZZASZOLAS,MIKOR,OSMEGJEGYZES_ID) values ('2','5','2','Ez egy jó kép',to_date('2022-03-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),null);
+Insert into KEP_MEGJEGYZESEK (ID,KEP_ID,PROFIL_ID,HOZZASZOLAS,MIKOR,OSMEGJEGYZES_ID) values ('3','1','3','Ez egy jó kép',to_date('2022-03-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),null);
+REM INSERTING into NEVNAPOK
+SET DEFINE OFF;
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('1','Norbert','6','6');
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('2','Dániel','7','21');
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('3','Liza','11','25');
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('4','Sándor','3','18');
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('5','Gabriella','12','12');
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('6','Kamilla','12','28');
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('7','Antal','1','17');
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('8','Martin','10','10');
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('9','Kitti','4','11');
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('10','Gabriella','12','12');
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('11','Renátó','10','6');
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('12','Renátó','11','12');
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('13','Árpád','12','11');
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('14','Petra','10','2');
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('15','Anett','6','13');
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('16','Donát','2','17');
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('17','Róbert','6','7');
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('18','Géza','2','25');
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('19','Brigitta','2','1');
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('20','Natália','7','27');
+Insert into NEVNAPOK (ID,KERESZTNEV,HONAP,NAP) values ('21','Alex','2','9');
+REM INSERTING into PRIVAT_UZENETEK
+SET DEFINE OFF;
+Insert into PRIVAT_UZENETEK (ID,KULDO,FOGADO,MIKOR,OLVASOTT,UZENET) values ('11','12','3',to_date('2022-03-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),'1','Szia');
+Insert into PRIVAT_UZENETEK (ID,KULDO,FOGADO,MIKOR,OLVASOTT,UZENET) values ('12','13','2',to_date('2022-03-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),'1','Sziamia');
+Insert into PRIVAT_UZENETEK (ID,KULDO,FOGADO,MIKOR,OLVASOTT,UZENET) values ('13','5','3',to_date('2022-03-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),'1','Hogy ityeg a fityeg :)');
+Insert into PRIVAT_UZENETEK (ID,KULDO,FOGADO,MIKOR,OLVASOTT,UZENET) values ('1','2','3',to_date('2022-03-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),'1','Szia');
+Insert into PRIVAT_UZENETEK (ID,KULDO,FOGADO,MIKOR,OLVASOTT,UZENET) values ('2','3','2',to_date('2022-03-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),'1','Sziamia');
+Insert into PRIVAT_UZENETEK (ID,KULDO,FOGADO,MIKOR,OLVASOTT,UZENET) values ('3','2','3',to_date('2022-03-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),'1','Hogy ityeg a fityeg :)');
+Insert into PRIVAT_UZENETEK (ID,KULDO,FOGADO,MIKOR,OLVASOTT,UZENET) values ('4','3','2',to_date('2022-03-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),'0','bumburnyák');
+Insert into PRIVAT_UZENETEK (ID,KULDO,FOGADO,MIKOR,OLVASOTT,UZENET) values ('5','1','3',to_date('2022-03-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),'1','meöeo');
+Insert into PRIVAT_UZENETEK (ID,KULDO,FOGADO,MIKOR,OLVASOTT,UZENET) values ('6','3','1',to_date('2022-03-28 00:00:00','YYYY-MM-DD HH24:MI:SS'),'0','kakaóscsigát eszel-e');
+Insert into PRIVAT_UZENETEK (ID,KULDO,FOGADO,MIKOR,OLVASOTT,UZENET) values ('7','1','2',to_date('2022-03-29 00:00:00','YYYY-MM-DD HH24:MI:SS'),'1','beteg lettem nem tudok menni have fun');
+Insert into PRIVAT_UZENETEK (ID,KULDO,FOGADO,MIKOR,OLVASOTT,UZENET) values ('14','6','2',to_date('2022-03-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),'0','bumburnyák');
+Insert into PRIVAT_UZENETEK (ID,KULDO,FOGADO,MIKOR,OLVASOTT,UZENET) values ('15','7','3',to_date('2022-03-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),'1','meöeo');
+Insert into PRIVAT_UZENETEK (ID,KULDO,FOGADO,MIKOR,OLVASOTT,UZENET) values ('8','2','1',to_date('2022-03-29 00:00:00','YYYY-MM-DD HH24:MI:SS'),'1','jaj te szegény jobbulást :(');
+Insert into PRIVAT_UZENETEK (ID,KULDO,FOGADO,MIKOR,OLVASOTT,UZENET) values ('9','1','2',to_date('2022-04-02 00:00:00','YYYY-MM-DD HH24:MI:SS'),'1','star wars megy a tvben képzeld!!!');
+Insert into PRIVAT_UZENETEK (ID,KULDO,FOGADO,MIKOR,OLVASOTT,UZENET) values ('10','13','7',to_date('2022-04-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),'0','Szióka');
+Insert into PRIVAT_UZENETEK (ID,KULDO,FOGADO,MIKOR,OLVASOTT,UZENET) values ('16','8','1',to_date('2022-03-28 00:00:00','YYYY-MM-DD HH24:MI:SS'),'0','kakaóscsigát eszel-e');
+Insert into PRIVAT_UZENETEK (ID,KULDO,FOGADO,MIKOR,OLVASOTT,UZENET) values ('17','9','2',to_date('2022-03-29 00:00:00','YYYY-MM-DD HH24:MI:SS'),'1','beteg lettem nem tudok menni have fun');
+Insert into PRIVAT_UZENETEK (ID,KULDO,FOGADO,MIKOR,OLVASOTT,UZENET) values ('18','10','1',to_date('2022-03-29 00:00:00','YYYY-MM-DD HH24:MI:SS'),'1','jaj te szegény jobbulást :(');
+Insert into PRIVAT_UZENETEK (ID,KULDO,FOGADO,MIKOR,OLVASOTT,UZENET) values ('19','11','2',to_date('2022-04-02 00:00:00','YYYY-MM-DD HH24:MI:SS'),'1','star wars megy a tvben képzeld!!!');
+Insert into PRIVAT_UZENETEK (ID,KULDO,FOGADO,MIKOR,OLVASOTT,UZENET) values ('20','13','7',to_date('2022-04-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),'0','Szióka');
+REM INSERTING into PROFIL_MEGJEGYZESEK
+SET DEFINE OFF;
+Insert into PROFIL_MEGJEGYZESEK (ID,KULDO,FOGADO,OSMEGYJEGYZES_ID,MEGYJEGY_DATUM,MEGJEGYZES) values ('1','1','2',null,to_date('2022-03-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),'Heló szia szevasz! Írtam a profilodra.');
+Insert into PROFIL_MEGJEGYZESEK (ID,KULDO,FOGADO,OSMEGYJEGYZES_ID,MEGYJEGY_DATUM,MEGJEGYZES) values ('2','2','3',null,to_date('2022-03-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),'Heló szia szevasz! Írtam a profilodra.');
+Insert into PROFIL_MEGJEGYZESEK (ID,KULDO,FOGADO,OSMEGYJEGYZES_ID,MEGYJEGY_DATUM,MEGJEGYZES) values ('3','3','1',null,to_date('2022-03-27 00:00:00','YYYY-MM-DD HH24:MI:SS'),'Heló szia szevasz! Írtam a profilodra.');
+REM INSERTING into PROFILOK
+SET DEFINE OFF;
+Insert into PROFILOK (ID,FELHASZNALO_ID,VEZETEKNEV,KERESZTNEV,NEME,SZULNAP,PROFIL_KEP,VAROS,MEGYE,ISKOLA,MUNKAHELY,REG_DATUM) values ('10','10','Somogyi','Gabriella','woman',to_date('2022-05-04 00:00:00','YYYY-MM-DD HH24:MI:SS'),'default-profile-image.png','Szeged','Csongrád-Csanád','Vasvári','SZTE',to_date('2022-05-02 13:25:10','YYYY-MM-DD HH24:MI:SS'));
+Insert into PROFILOK (ID,FELHASZNALO_ID,VEZETEKNEV,KERESZTNEV,NEME,SZULNAP,PROFIL_KEP,VAROS,MEGYE,ISKOLA,MUNKAHELY,REG_DATUM) values ('1','1','Lengyel','Norbert','man',to_date('2000-06-16 00:00:00','YYYY-MM-DD HH24:MI:SS'),'profile-1.jpg','Szeged','Csongrád-Csanád','Vasvári','SZTE',to_date('2022-05-02 12:50:19','YYYY-MM-DD HH24:MI:SS'));
+Insert into PROFILOK (ID,FELHASZNALO_ID,VEZETEKNEV,KERESZTNEV,NEME,SZULNAP,PROFIL_KEP,VAROS,MEGYE,ISKOLA,MUNKAHELY,REG_DATUM) values ('11','11','Fehér','Árpád','man',to_date('2022-05-04 00:00:00','YYYY-MM-DD HH24:MI:SS'),'default-profile-image.png','Szeged','Csongrád-Csanád','Vasvári','SZTE',to_date('2022-05-02 13:35:15','YYYY-MM-DD HH24:MI:SS'));
+Insert into PROFILOK (ID,FELHASZNALO_ID,VEZETEKNEV,KERESZTNEV,NEME,SZULNAP,PROFIL_KEP,VAROS,MEGYE,ISKOLA,MUNKAHELY,REG_DATUM) values ('12','12','Balog','Renátó','man',to_date('2022-05-04 00:00:00','YYYY-MM-DD HH24:MI:SS'),'default-profile-image.png','Szeged','Csongrád-Csanád','Vasvári','SZTE',to_date('2022-05-02 13:35:54','YYYY-MM-DD HH24:MI:SS'));
+Insert into PROFILOK (ID,FELHASZNALO_ID,VEZETEKNEV,KERESZTNEV,NEME,SZULNAP,PROFIL_KEP,VAROS,MEGYE,ISKOLA,MUNKAHELY,REG_DATUM) values ('3','3','Kósi','Liza','woman',to_date('2001-10-24 00:00:00','YYYY-MM-DD HH24:MI:SS'),'profile-3.jpg','Szeged','Csongrád','Vasvári','SZTE',to_date('2022-05-02 13:01:55','YYYY-MM-DD HH24:MI:SS'));
+Insert into PROFILOK (ID,FELHASZNALO_ID,VEZETEKNEV,KERESZTNEV,NEME,SZULNAP,PROFIL_KEP,VAROS,MEGYE,ISKOLA,MUNKAHELY,REG_DATUM) values ('4','4','Kolompár','Sándor','man',to_date('2022-05-04 00:00:00','YYYY-MM-DD HH24:MI:SS'),'profile-4.jpg','Szeged','Csongrád-Csanád','Vasvári','SZTE',to_date('2022-05-02 13:19:44','YYYY-MM-DD HH24:MI:SS'));
+Insert into PROFILOK (ID,FELHASZNALO_ID,VEZETEKNEV,KERESZTNEV,NEME,SZULNAP,PROFIL_KEP,VAROS,MEGYE,ISKOLA,MUNKAHELY,REG_DATUM) values ('2','2','Godó','Dani','man',to_date('2000-09-11 00:00:00','YYYY-MM-DD HH24:MI:SS'),'profile-2.jpg','Szeged','Csongrád-Csanád','Vasvári','SZTE',to_date('2022-05-02 12:54:48','YYYY-MM-DD HH24:MI:SS'));
+Insert into PROFILOK (ID,FELHASZNALO_ID,VEZETEKNEV,KERESZTNEV,NEME,SZULNAP,PROFIL_KEP,VAROS,MEGYE,ISKOLA,MUNKAHELY,REG_DATUM) values ('5','5','Gál','Gabriella','woman',to_date('2022-05-04 00:00:00','YYYY-MM-DD HH24:MI:SS'),'profile-5.jpg','Szeged','Csongrád-Csanád','Vasvári','SZTE',to_date('2022-05-02 13:20:43','YYYY-MM-DD HH24:MI:SS'));
+Insert into PROFILOK (ID,FELHASZNALO_ID,VEZETEKNEV,KERESZTNEV,NEME,SZULNAP,PROFIL_KEP,VAROS,MEGYE,ISKOLA,MUNKAHELY,REG_DATUM) values ('6','6','Jónás','Kamilla','woman',to_date('2022-05-03 00:00:00','YYYY-MM-DD HH24:MI:SS'),'profile-6.jpg','Szeged','Csongrád-Csanád','Vasvári','SZTE',to_date('2022-05-02 13:21:35','YYYY-MM-DD HH24:MI:SS'));
+Insert into PROFILOK (ID,FELHASZNALO_ID,VEZETEKNEV,KERESZTNEV,NEME,SZULNAP,PROFIL_KEP,VAROS,MEGYE,ISKOLA,MUNKAHELY,REG_DATUM) values ('7','7','Fekete','Antall','man',to_date('2022-05-04 00:00:00','YYYY-MM-DD HH24:MI:SS'),'profile-7.jpg','Szeged','Csongrád-Csanád','Vasvári','SZTE',to_date('2022-05-02 13:22:05','YYYY-MM-DD HH24:MI:SS'));
+Insert into PROFILOK (ID,FELHASZNALO_ID,VEZETEKNEV,KERESZTNEV,NEME,SZULNAP,PROFIL_KEP,VAROS,MEGYE,ISKOLA,MUNKAHELY,REG_DATUM) values ('8','8','Simon','Martin','man',to_date('2022-05-04 00:00:00','YYYY-MM-DD HH24:MI:SS'),'default-profile-image.png','Szeged','Csongrád-Csanád','Vasvári','SZTE',to_date('2022-05-02 13:23:25','YYYY-MM-DD HH24:MI:SS'));
+Insert into PROFILOK (ID,FELHASZNALO_ID,VEZETEKNEV,KERESZTNEV,NEME,SZULNAP,PROFIL_KEP,VAROS,MEGYE,ISKOLA,MUNKAHELY,REG_DATUM) values ('9','9','Csonka','Kitti','woman',to_date('2022-05-04 00:00:00','YYYY-MM-DD HH24:MI:SS'),'default-profile-image.png','Szeged','Csongrád-Csanád','Vasvári','SZTE',to_date('2022-05-02 13:24:00','YYYY-MM-DD HH24:MI:SS'));
+Insert into PROFILOK (ID,FELHASZNALO_ID,VEZETEKNEV,KERESZTNEV,NEME,SZULNAP,PROFIL_KEP,VAROS,MEGYE,ISKOLA,MUNKAHELY,REG_DATUM) values ('13','13','Mezei','Donát','man',to_date('2022-05-04 00:00:00','YYYY-MM-DD HH24:MI:SS'),'profile-13.jpg','Szeged','Csongrád-Csanád','Vasvári','SZTE',to_date('2022-05-02 13:37:00','YYYY-MM-DD HH24:MI:SS'));
+Insert into PROFILOK (ID,FELHASZNALO_ID,VEZETEKNEV,KERESZTNEV,NEME,SZULNAP,PROFIL_KEP,VAROS,MEGYE,ISKOLA,MUNKAHELY,REG_DATUM) values ('14','14','Orbán','Petra','woman',to_date('2022-05-05 00:00:00','YYYY-MM-DD HH24:MI:SS'),'profile-14.jpg','Szeged','Csongrád-Csanád','Vasvári','SZTE',to_date('2022-05-02 13:37:27','YYYY-MM-DD HH24:MI:SS'));
+Insert into PROFILOK (ID,FELHASZNALO_ID,VEZETEKNEV,KERESZTNEV,NEME,SZULNAP,PROFIL_KEP,VAROS,MEGYE,ISKOLA,MUNKAHELY,REG_DATUM) values ('15','15','Kelemen','Anett','woman',to_date('2022-05-11 00:00:00','YYYY-MM-DD HH24:MI:SS'),'profile-15.jpg','Szeged','Csongrád-Csanád','Vasvári','SZTE',to_date('2022-05-02 13:38:06','YYYY-MM-DD HH24:MI:SS'));
+Insert into PROFILOK (ID,FELHASZNALO_ID,VEZETEKNEV,KERESZTNEV,NEME,SZULNAP,PROFIL_KEP,VAROS,MEGYE,ISKOLA,MUNKAHELY,REG_DATUM) values ('16','16','Váradi','Alex','man',to_date('2022-05-04 00:00:00','YYYY-MM-DD HH24:MI:SS'),'default-profile-image.png','Szeged','Csongrád-Csanád','Vasvári','SZTE',to_date('2022-05-02 13:38:45','YYYY-MM-DD HH24:MI:SS'));
+--------------------------------------------------------
+--  DDL for Index FELHASZNALOK_UK1
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "FELHASZNALOK_UK1" ON "FELHASZNALOK" ("FELHASZNALO_NEV", "EMAIL") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index FELHASZNALOK_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "FELHASZNALOK_PK" ON "FELHASZNALOK" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index CSOPORTOK_UK1
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "CSOPORTOK_UK1" ON "CSOPORTOK" ("CSOPORT_NEV") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index ISMEROSOK_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "ISMEROSOK_PK" ON "ISMEROSOK" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index CSOPORTOK_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "CSOPORTOK_PK" ON "CSOPORTOK" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index NEVNAPOK_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "NEVNAPOK_PK" ON "NEVNAPOK" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PROFILOK_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "PROFILOK_PK" ON "PROFILOK" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index CSOPORT_TAGOK_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "CSOPORT_TAGOK_PK" ON "CSOPORT_TAGOK" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index KEP_MEGJEGYZESEK_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "KEP_MEGJEGYZESEK_PK" ON "KEP_MEGJEGYZESEK" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index ENGEDELYEK_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "ENGEDELYEK_PK" ON "ENGEDELYEK" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index ALBUM_KEPEK_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "ALBUM_KEPEK_PK" ON "ALBUM_KEPEK" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PROFIL_MEGJEGYZESEK_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "PROFIL_MEGJEGYZESEK_PK" ON "PROFIL_MEGJEGYZESEK" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index PRIVAT_UZENETEK_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "PRIVAT_UZENETEK_PK" ON "PRIVAT_UZENETEK" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index ALBUMOK_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "ALBUMOK_PK" ON "ALBUMOK" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index CSOPORT_UZENETEK_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "CSOPORT_UZENETEK_PK" ON "CSOPORT_UZENETEK" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Index FELTOLTOTT_KEPEK_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "FELTOLTOTT_KEPEK_PK" ON "FELTOLTOTT_KEPEK" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS" ;
+--------------------------------------------------------
+--  DDL for Trigger ALBUM_KEPEK_TRIG
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "ALBUM_KEPEK_TRIG" 
+BEFORE INSERT
+ON ALBUM_KEPEK
+FOR EACH ROW
+ WHEN (NEW.id is null) BEGIN
+    SELECT album_kepek_seq.NEXTVAL INTO :NEW.id from dual;
+END;
+/
+ALTER TRIGGER "ALBUM_KEPEK_TRIG" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger ALBUMOK_TRIG
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "ALBUMOK_TRIG" 
+BEFORE INSERT ON "ALBUMOK"
+FOR EACH ROW
+ WHEN (NEW.id is null) BEGIN
+  SELECT albumok_seq.NEXTVAL INTO :new.id FROM dual;
+END;
+/
+ALTER TRIGGER "ALBUMOK_TRIG" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger CSOPORTOK_TRIG
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "CSOPORTOK_TRIG" 
+BEFORE INSERT
+ON CSOPORTOK
+FOR EACH ROW
+ WHEN (NEW.id is null) BEGIN
+    SELECT csoportok_seq.NEXTVAL INTO :NEW.id from dual;
+END;
+/
+ALTER TRIGGER "CSOPORTOK_TRIG" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger CSOPORT_TAGOK_TRIG
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "CSOPORT_TAGOK_TRIG" 
+BEFORE INSERT
+ON CSOPORT_TAGOK
+FOR EACH ROW
+ WHEN (NEW.id is null) BEGIN
+    SELECT csoport_tagok_seq.NEXTVAL INTO :NEW.id from dual;
+    SELECT CSOPORTOK_SEQ.CURRVAL INTO :NEW.csoport_id from dual;
+END;
+/
+ALTER TRIGGER "CSOPORT_TAGOK_TRIG" DISABLE;
+--------------------------------------------------------
+--  DDL for Trigger CSOPORT_TAGOK_TRIG2
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "CSOPORT_TAGOK_TRIG2" 
+BEFORE INSERT
+ON CSOPORT_TAGOK
+FOR EACH ROW
+ WHEN (NEW.id is null) BEGIN
+    SELECT csoport_tagok_seq.NEXTVAL INTO :NEW.id from dual;
+END;
+/
+ALTER TRIGGER "CSOPORT_TAGOK_TRIG2" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger FELHASZN_TRIG
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "FELHASZN_TRIG" 
+  BEFORE INSERT ON "FELHASZNALOK"
+  FOR EACH ROW
+  BEGIN
+    SELECT felhaszn_seq.NEXTVAL INTO :NEW.id FROM dual;
+  END;
+
+/
+ALTER TRIGGER "FELHASZN_TRIG" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger FELTOLTOTT_KEPEK_TRIG
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "FELTOLTOTT_KEPEK_TRIG" 
+BEFORE INSERT ON "FELTOLTOTT_KEPEK"
+FOR EACH ROW
+ WHEN (NEW.id is null) BEGIN
+  SELECT feltoltott_kepek_seq.NEXTVAL INTO :new.id FROM dual;
+END;
+/
+ALTER TRIGGER "FELTOLTOTT_KEPEK_TRIG" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger ISMEROSOK_ID
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "ISMEROSOK_ID" 
+BEFORE INSERT
+ON ismerosok
+FOR EACH ROW
+ WHEN (NEW.id is null) BEGIN
+    select seq_ismerosok_id.nextval into :NEW.id from dual;
+END;
+/
+ALTER TRIGGER "ISMEROSOK_ID" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger PROFIL_TRIG
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "PROFIL_TRIG" 
+  BEFORE INSERT ON "PROFILOK"
+  FOR EACH ROW
+   WHEN (NEW.id is null) BEGIN
+    SELECT profil_seq.NEXTVAL INTO :new.id FROM dual;
+    SELECT felhaszn_seq.CURRVAL INTO :NEW.felhasznalo_id FROM dual;
+  END;
+/
+ALTER TRIGGER "PROFIL_TRIG" ENABLE;
+--------------------------------------------------------
+--  Constraints for Table FELTOLTOTT_KEPEK
+--------------------------------------------------------
+
+  ALTER TABLE "FELTOLTOTT_KEPEK" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "FELTOLTOTT_KEPEK" MODIFY ("PROFIL_ID" NOT NULL ENABLE);
+  ALTER TABLE "FELTOLTOTT_KEPEK" MODIFY ("KEP_NEV" NOT NULL ENABLE);
+  ALTER TABLE "FELTOLTOTT_KEPEK" MODIFY ("MIKOR" NOT NULL ENABLE);
+  ALTER TABLE "FELTOLTOTT_KEPEK" ADD CONSTRAINT "FELTOLTOTT_KEPEK_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+  ALTER TABLE "FELTOLTOTT_KEPEK" MODIFY ("FOGLALT_TARHELY" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table ISMEROSOK
+--------------------------------------------------------
+
+  ALTER TABLE "ISMEROSOK" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "ISMEROSOK" MODIFY ("KULDO" NOT NULL ENABLE);
+  ALTER TABLE "ISMEROSOK" MODIFY ("FUGGOBEN" NOT NULL ENABLE);
+  ALTER TABLE "ISMEROSOK" MODIFY ("FOGADO" NOT NULL ENABLE);
+  ALTER TABLE "ISMEROSOK" ADD CONSTRAINT "ISMEROSOK_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table PROFILOK
+--------------------------------------------------------
+
+  ALTER TABLE "PROFILOK" MODIFY ("VEZETEKNEV" NOT NULL ENABLE);
+  ALTER TABLE "PROFILOK" MODIFY ("KERESZTNEV" NOT NULL ENABLE);
+  ALTER TABLE "PROFILOK" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "PROFILOK" MODIFY ("FELHASZNALO_ID" NOT NULL ENABLE);
+  ALTER TABLE "PROFILOK" MODIFY ("VAROS" NOT NULL ENABLE);
+  ALTER TABLE "PROFILOK" MODIFY ("NEME" NOT NULL ENABLE);
+  ALTER TABLE "PROFILOK" MODIFY ("SZULNAP" NOT NULL ENABLE);
+  ALTER TABLE "PROFILOK" ADD CONSTRAINT "PROFILOK_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+  ALTER TABLE "PROFILOK" MODIFY ("PROFIL_KEP" NOT NULL ENABLE);
+  ALTER TABLE "PROFILOK" MODIFY ("MEGYE" NOT NULL ENABLE);
+  ALTER TABLE "PROFILOK" MODIFY ("REG_DATUM" NOT NULL ENABLE);
+  ALTER TABLE "PROFILOK" MODIFY ("ISKOLA" NOT NULL ENABLE);
+  ALTER TABLE "PROFILOK" MODIFY ("MUNKAHELY" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table CSOPORTOK
+--------------------------------------------------------
+
+  ALTER TABLE "CSOPORTOK" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "CSOPORTOK" MODIFY ("CSOPORT_NEV" NOT NULL ENABLE);
+  ALTER TABLE "CSOPORTOK" MODIFY ("LEIRAS" NOT NULL ENABLE);
+  ALTER TABLE "CSOPORTOK" ADD CONSTRAINT "CSOPORTOK_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+  ALTER TABLE "CSOPORTOK" ADD CONSTRAINT "CSOPORTOK_UK1" UNIQUE ("CSOPORT_NEV")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+  ALTER TABLE "CSOPORTOK" MODIFY ("INDEX_KEP" NOT NULL ENABLE);
+  ALTER TABLE "CSOPORTOK" MODIFY ("ALAPITAS_DATUM" NOT NULL ENABLE);
+  ALTER TABLE "CSOPORTOK" MODIFY ("TULAJ" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table KEP_MEGJEGYZESEK
+--------------------------------------------------------
+
+  ALTER TABLE "KEP_MEGJEGYZESEK" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "KEP_MEGJEGYZESEK" MODIFY ("KEP_ID" NOT NULL ENABLE);
+  ALTER TABLE "KEP_MEGJEGYZESEK" MODIFY ("PROFIL_ID" NOT NULL ENABLE);
+  ALTER TABLE "KEP_MEGJEGYZESEK" MODIFY ("HOZZASZOLAS" NOT NULL ENABLE);
+  ALTER TABLE "KEP_MEGJEGYZESEK" MODIFY ("MIKOR" NOT NULL ENABLE);
+  ALTER TABLE "KEP_MEGJEGYZESEK" ADD CONSTRAINT "KEP_MEGJEGYZESEK_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table PROFIL_MEGJEGYZESEK
+--------------------------------------------------------
+
+  ALTER TABLE "PROFIL_MEGJEGYZESEK" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "PROFIL_MEGJEGYZESEK" MODIFY ("MEGJEGYZES" NOT NULL ENABLE);
+  ALTER TABLE "PROFIL_MEGJEGYZESEK" ADD CONSTRAINT "PROFIL_MEGJEGYZESEK_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+  ALTER TABLE "PROFIL_MEGJEGYZESEK" MODIFY ("MEGYJEGY_DATUM" NOT NULL ENABLE);
+  ALTER TABLE "PROFIL_MEGJEGYZESEK" MODIFY ("KULDO" NOT NULL ENABLE);
+  ALTER TABLE "PROFIL_MEGJEGYZESEK" MODIFY ("FOGADO" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table CSOPORT_UZENETEK
+--------------------------------------------------------
+
+  ALTER TABLE "CSOPORT_UZENETEK" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "CSOPORT_UZENETEK" ADD CONSTRAINT "CSOPORT_UZENETEK_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+  ALTER TABLE "CSOPORT_UZENETEK" MODIFY ("KULDO" NOT NULL ENABLE);
+  ALTER TABLE "CSOPORT_UZENETEK" MODIFY ("FOGADO_CSOPORT" NOT NULL ENABLE);
+  ALTER TABLE "CSOPORT_UZENETEK" MODIFY ("MIKOR" NOT NULL ENABLE);
+  ALTER TABLE "CSOPORT_UZENETEK" MODIFY ("OLVASOTT" NOT NULL ENABLE);
+  ALTER TABLE "CSOPORT_UZENETEK" MODIFY ("UZENET" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table ALBUMOK
+--------------------------------------------------------
+
+  ALTER TABLE "ALBUMOK" MODIFY ("PROFIL_ID" NOT NULL ENABLE);
+  ALTER TABLE "ALBUMOK" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "ALBUMOK" MODIFY ("CIM" NOT NULL ENABLE);
+  ALTER TABLE "ALBUMOK" MODIFY ("LETREHOZVA" NOT NULL ENABLE);
+  ALTER TABLE "ALBUMOK" ADD CONSTRAINT "ALBUMOK_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table CSOPORT_TAGOK
+--------------------------------------------------------
+
+  ALTER TABLE "CSOPORT_TAGOK" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "CSOPORT_TAGOK" MODIFY ("PROFIL_ID" NOT NULL ENABLE);
+  ALTER TABLE "CSOPORT_TAGOK" MODIFY ("CSOPORT_ID" NOT NULL ENABLE);
+  ALTER TABLE "CSOPORT_TAGOK" ADD CONSTRAINT "CSOPORT_TAGOK_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+  ALTER TABLE "CSOPORT_TAGOK" MODIFY ("ELFOGADOTT" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table NEVNAPOK
+--------------------------------------------------------
+
+  ALTER TABLE "NEVNAPOK" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "NEVNAPOK" MODIFY ("KERESZTNEV" NOT NULL ENABLE);
+  ALTER TABLE "NEVNAPOK" MODIFY ("HONAP" NOT NULL ENABLE);
+  ALTER TABLE "NEVNAPOK" MODIFY ("NAP" NOT NULL ENABLE);
+  ALTER TABLE "NEVNAPOK" ADD CONSTRAINT "NEVNAPOK_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table ENGEDELYEK
+--------------------------------------------------------
+
+  ALTER TABLE "ENGEDELYEK" MODIFY ("ELFOGADOTT" NOT NULL ENABLE);
+  ALTER TABLE "ENGEDELYEK" MODIFY ("KULDO" NOT NULL ENABLE);
+  ALTER TABLE "ENGEDELYEK" MODIFY ("FOGADO" NOT NULL ENABLE);
+  ALTER TABLE "ENGEDELYEK" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "ENGEDELYEK" ADD CONSTRAINT "ENGEDELYEK_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table ALBUM_KEPEK
+--------------------------------------------------------
+
+  ALTER TABLE "ALBUM_KEPEK" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "ALBUM_KEPEK" MODIFY ("KEP_ID" NOT NULL ENABLE);
+  ALTER TABLE "ALBUM_KEPEK" MODIFY ("ALBUM_ID" NOT NULL ENABLE);
+  ALTER TABLE "ALBUM_KEPEK" ADD CONSTRAINT "ALBUM_KEPEK_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table FELHASZNALOK
+--------------------------------------------------------
+
+  ALTER TABLE "FELHASZNALOK" MODIFY ("FELHASZNALO_NEV" NOT NULL ENABLE);
+  ALTER TABLE "FELHASZNALOK" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "FELHASZNALOK" MODIFY ("JELSZO" NOT NULL ENABLE);
+  ALTER TABLE "FELHASZNALOK" MODIFY ("EMAIL" NOT NULL ENABLE);
+  ALTER TABLE "FELHASZNALOK" ADD CONSTRAINT "FELHASZNALOK_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+  ALTER TABLE "FELHASZNALOK" ADD CONSTRAINT "FELHASZNALOK_UK1" UNIQUE ("FELHASZNALO_NEV", "EMAIL")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table PRIVAT_UZENETEK
+--------------------------------------------------------
+
+  ALTER TABLE "PRIVAT_UZENETEK" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "PRIVAT_UZENETEK" MODIFY ("KULDO" NOT NULL ENABLE);
+  ALTER TABLE "PRIVAT_UZENETEK" MODIFY ("FOGADO" NOT NULL ENABLE);
+  ALTER TABLE "PRIVAT_UZENETEK" MODIFY ("MIKOR" NOT NULL ENABLE);
+  ALTER TABLE "PRIVAT_UZENETEK" MODIFY ("OLVASOTT" NOT NULL ENABLE);
+  ALTER TABLE "PRIVAT_UZENETEK" MODIFY ("UZENET" NOT NULL ENABLE);
+  ALTER TABLE "PRIVAT_UZENETEK" ADD CONSTRAINT "PRIVAT_UZENETEK_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "USERS"  ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table ALBUM_KEPEK
+--------------------------------------------------------
+
+  ALTER TABLE "ALBUM_KEPEK" ADD CONSTRAINT "ALBUM_KEPEK_FK1" FOREIGN KEY ("ALBUM_ID")
+	  REFERENCES "ALBUMOK" ("ID") ON DELETE CASCADE ENABLE;
+  ALTER TABLE "ALBUM_KEPEK" ADD CONSTRAINT "ALBUM_KEPEK_FK2" FOREIGN KEY ("KEP_ID")
+	  REFERENCES "FELTOLTOTT_KEPEK" ("ID") ON DELETE CASCADE ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table ALBUMOK
+--------------------------------------------------------
+
+  ALTER TABLE "ALBUMOK" ADD CONSTRAINT "ALBUMOK_FK1" FOREIGN KEY ("PROFIL_ID")
+	  REFERENCES "PROFILOK" ("ID") ON DELETE CASCADE ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table CSOPORTOK
+--------------------------------------------------------
+
+  ALTER TABLE "CSOPORTOK" ADD CONSTRAINT "CSOPORTOK_FK1" FOREIGN KEY ("TULAJ")
+	  REFERENCES "PROFILOK" ("ID") ON DELETE CASCADE ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table CSOPORT_TAGOK
+--------------------------------------------------------
+
+  ALTER TABLE "CSOPORT_TAGOK" ADD CONSTRAINT "CSOPORT_TAGOK_FK1" FOREIGN KEY ("CSOPORT_ID")
+	  REFERENCES "CSOPORTOK" ("ID") ON DELETE CASCADE ENABLE;
+  ALTER TABLE "CSOPORT_TAGOK" ADD CONSTRAINT "CSOPORT_TAGOK_FK2" FOREIGN KEY ("PROFIL_ID")
+	  REFERENCES "PROFILOK" ("ID") ON DELETE CASCADE ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table CSOPORT_UZENETEK
+--------------------------------------------------------
+
+  ALTER TABLE "CSOPORT_UZENETEK" ADD CONSTRAINT "CSOPORT_UZENETEK_FK1" FOREIGN KEY ("KULDO")
+	  REFERENCES "PROFILOK" ("ID") ON DELETE CASCADE ENABLE;
+  ALTER TABLE "CSOPORT_UZENETEK" ADD CONSTRAINT "CSOPORT_UZENETEK_FK2" FOREIGN KEY ("FOGADO_CSOPORT")
+	  REFERENCES "CSOPORTOK" ("ID") ON DELETE CASCADE ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table ENGEDELYEK
+--------------------------------------------------------
+
+  ALTER TABLE "ENGEDELYEK" ADD CONSTRAINT "ENGEDELYEK_FK1" FOREIGN KEY ("KULDO")
+	  REFERENCES "PROFILOK" ("ID") ON DELETE CASCADE ENABLE;
+  ALTER TABLE "ENGEDELYEK" ADD CONSTRAINT "ENGEDELYEK_FK2" FOREIGN KEY ("FOGADO")
+	  REFERENCES "PROFILOK" ("ID") ON DELETE CASCADE ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table FELTOLTOTT_KEPEK
+--------------------------------------------------------
+
+  ALTER TABLE "FELTOLTOTT_KEPEK" ADD CONSTRAINT "FELTOLTOTT_KEPEK_FK1" FOREIGN KEY ("PROFIL_ID")
+	  REFERENCES "PROFILOK" ("ID") ON DELETE CASCADE ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table ISMEROSOK
+--------------------------------------------------------
+
+  ALTER TABLE "ISMEROSOK" ADD CONSTRAINT "ISMEROSOK_FK1" FOREIGN KEY ("KULDO")
+	  REFERENCES "PROFILOK" ("ID") ON DELETE CASCADE ENABLE;
+  ALTER TABLE "ISMEROSOK" ADD CONSTRAINT "ISMEROSOK_FK2" FOREIGN KEY ("FOGADO")
+	  REFERENCES "PROFILOK" ("ID") ON DELETE CASCADE ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table KEP_MEGJEGYZESEK
+--------------------------------------------------------
+
+  ALTER TABLE "KEP_MEGJEGYZESEK" ADD CONSTRAINT "KEP_MEGJEGYZESEK_FK1" FOREIGN KEY ("KEP_ID")
+	  REFERENCES "FELTOLTOTT_KEPEK" ("ID") ON DELETE CASCADE ENABLE;
+  ALTER TABLE "KEP_MEGJEGYZESEK" ADD CONSTRAINT "KEP_MEGJEGYZESEK_FK2" FOREIGN KEY ("PROFIL_ID")
+	  REFERENCES "PROFILOK" ("ID") ON DELETE CASCADE ENABLE;
+  ALTER TABLE "KEP_MEGJEGYZESEK" ADD CONSTRAINT "KEP_MEGJEGYZESEK_FK3" FOREIGN KEY ("OSMEGJEGYZES_ID")
+	  REFERENCES "KEP_MEGJEGYZESEK" ("ID") ON DELETE CASCADE ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table PRIVAT_UZENETEK
+--------------------------------------------------------
+
+  ALTER TABLE "PRIVAT_UZENETEK" ADD CONSTRAINT "PRIVAT_UZENETEK_FK1" FOREIGN KEY ("KULDO")
+	  REFERENCES "PROFILOK" ("ID") ON DELETE CASCADE ENABLE;
+  ALTER TABLE "PRIVAT_UZENETEK" ADD CONSTRAINT "PRIVAT_UZENETEK_FK2" FOREIGN KEY ("FOGADO")
+	  REFERENCES "PROFILOK" ("ID") ON DELETE CASCADE ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table PROFIL_MEGJEGYZESEK
+--------------------------------------------------------
+
+  ALTER TABLE "PROFIL_MEGJEGYZESEK" ADD CONSTRAINT "PROFIL_MEGJEGYZESEK_FK1" FOREIGN KEY ("OSMEGYJEGYZES_ID")
+	  REFERENCES "PROFIL_MEGJEGYZESEK" ("ID") ON DELETE CASCADE ENABLE;
+  ALTER TABLE "PROFIL_MEGJEGYZESEK" ADD CONSTRAINT "PROFIL_MEGJEGYZESEK_FK2" FOREIGN KEY ("KULDO")
+	  REFERENCES "PROFILOK" ("ID") ON DELETE CASCADE ENABLE;
+  ALTER TABLE "PROFIL_MEGJEGYZESEK" ADD CONSTRAINT "PROFIL_MEGJEGYZESEK_FK3" FOREIGN KEY ("FOGADO")
+	  REFERENCES "PROFILOK" ("ID") ON DELETE CASCADE ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table PROFILOK
+--------------------------------------------------------
+
+  ALTER TABLE "PROFILOK" ADD CONSTRAINT "PROFILOK_FK1" FOREIGN KEY ("FELHASZNALO_ID")
+	  REFERENCES "FELHASZNALOK" ("ID") ON DELETE CASCADE ENABLE;

@@ -1,0 +1,17 @@
+1) xampp - apache -> open xampp/php/php.init-> remove semicolons before extension=oci8_12c and extension=pdo_oci
+
+2) download cx_Oracle modul- pip install cx_Oracle --upgrade
+
+3) download oracle_instant_client(https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html) - Basic Package windows.x64-12.2.0.1.0.zip -> add folder to PATH
+
+4) flask modul - pip install FLask
+
+5) to request image sizes - pip install pillow
+
+6) Required to run the program's database on docker
+"----------------------------------------------------------------------------------------------------------------"
+
+Create Linux virtual environtment
+python3 -m venv env
+source env/bin/activate
+install python packages that u need

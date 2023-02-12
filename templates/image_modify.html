@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Fakebook - image{% endblock %}
+
+{% block content %}
+{% if image %}
+<!---------- IMAGE MODIFY MODAL ---------->
+<div class="modal-image">
+    <div class="card">
+        <h2>Image</h2>
+        <p class="text-muted">You can change the title of the image</p>
+        <form class="image-form" action="{{url_for('modify_image')}}" method="POST">
+            <div class="bg-secondary-soft px-4 py-5 rounded">
+                <!-- Name -->
+                <div class="row">
+                    <!-- Name -->
+                    <div class="row-element">
+                        <label class="form-label" for="image-modify-title">Title</label>
+                        <input type="text" class="form-control" name="image-modify-title" id="image-modify-title" placeholder="Title" aria-label="Title">
+                    </div>
+                </div>
+            </div>
+            <div class="margin"></div>
+            <button type="submit" class="btn btn-primary" name="mod-image-butt" id="mod-image-butt" value="{{image[0]}}">Update</button>
+        </form>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

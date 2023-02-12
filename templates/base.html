@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block links %}
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/home.css')}}">
+    <link rel="icon" href="../static/images/logo.png" type="image/png">
+    {% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <!---------- NAVBAR ---------->
+    <nav>
+        <div class="container">
+            <h2 class="log"><a href="{{url_for('home')}}"><i class="uil uil-facebook"></i>Fakebook</a></h2>
+            {% if session['loggedin'] %}
+            <!----- Search Bar ----->
+            <div class="search-bar">
+                <i class="uil uil-search"></i>
+                <input type="search" placeholder="Search for members or groups">
+            </div>
+            <!----- Create Post ----->
+            <div class="create">
+                <label class="btn btn-primary" id="create-post-notification" for="create-post">Create Post</label>
+            </div>
+            {% endif %}
+        </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class=flashes>
+                {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </nav>
+    <!---------- MAIN ---------->
+    {% block content %}
+    {% endblock %}
+    <!---------- THEME CUSTOMIZATION MODAL ---------->
+    <div class="modal-theme">
+        <div class="card">
+            <h2>Customize your view</h2>
+            <p class="text-muted">Manage your font size, color and background</p>
+            <!-- Font Size -->
+            <div class="font-size">
+                <h4>Font Size</h4>
+                <div>
+                    <h6>Aa</h6>
+                    <div class="choose-size">
+                        <span class="font-size-1"></span>
+                        <span class="font-size-2"></span>
+                        <span class="font-size-3 active"></span>
+                        <span class="font-size-4"></span>
+                        <span class="font-size-5"></span>
+                    </div>
+                    <h3>Aa</h3>
+                </div>
+            </div>
+            <!-- Primary Colors -->
+            <div class="color">
+                <h4>Color</h4>
+                <div class="choose-color">
+                    <span class="color-1 active"></span>
+                    <span class="color-2"></span>
+                    <span class="color-3"></span>
+                    <span class="color-4"></span>
+                    <span class="color-5"></span>
+                </div>
+            </div>
+            <!-- Background Colors -->
+            <div class="background">
+                <h4>Background</h4>
+                <div class="choose-bg">
+                    <div class="bg-1 active">
+                        <span></span>
+                        <h5 for="bg-1">Light</h5>
+                    </div>
+                    <div class="bg-2">
+                        <span></span>
+                        <h5 for="bg-2">Dim</h5>
+                    </div>
+                    <div class="bg-3">
+                        <span></span>
+                        <h5 for="bg-3">Lights out</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!---------- LOGIN MODAL ---------->
+        <div class="modal-login">
+            <div class="card">
+                <h2>Login</h2>
+                <p class="text-muted">Login to your account</p>
+                <form class="login-form" method="POST" action="{{url_for('login')}}">
+                    <div class="bg-secondary-soft px-4 py-5 rounded">
+                        <!-- Username / Password -->
+                        <div class="row">
+                            <!-- Username -->
+                            <div class="row-element">
+                                <label class="form-label" for="login-username">Username</label>
+                                <input type="text" class="form-control" name="login-username" id="login-username" placeholder="Username" aria-label="Username">
+                            </div>
+                            <!-- Password -->
+                            <div class="row-element">
+                                <label class="form-label" for="login-password">Password</label>
+                                <input type="password" class="form-control" name="login-password" id="login-password" placeholder="Password" aria-label="Password">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Login / Register -->
+                    <div class="row">
+                        <!-- Login -->
+                        <div class="row-element">
+                            <button type="submit">Login</button>
+                        </div>
+                        <!-- Register -->
+                        <div class="row-element">
+                            <span>Don't have an account?</span>
+                            <a id="register"><strong>Register</strong></a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    </div>
+    <!---------- REGISTER MODAL ---------->
+    <div class="modal-register">
+        <div class="card">
+            <h2>Register</h2>
+            <p class="text-muted">Register an account</p>
+            <form class="register-form" action="{{url_for('register')}}" method="POST">
+				<div class="bg-secondary-soft px-4 py-5 rounded">
+                    <!-- Username / Email -->
+                    <div class="row">
+                        <!-- Username -->
+                        <div class="row-element">
+                            <label class="form-label" for="register-username">Username</label>
+                            <input type="text" class="form-control" name="register-username" id="register-username" placeholder="Username" aria-label="Username" required>
+                        </div>
+                        <!-- Email -->
+                        <div class="row-element">
+                            <label class="form-label" for="register-email">Email</label>
+                            <input type="email" class="form-control" name="register-email" id="register-email" placeholder="Email" aria-label="Email">
+                        </div>
+                    </div>
+                    <!-- Password / Re-password -->
+                    <div class="row">
+                        <!-- Password -->
+                        <div class="row-element">
+                            <label class="form-label" for="register-password">Password</label>
+                            <input type="password" class="form-control" name="register-password" id="register-password" placeholder="Password" aria-label="Password" required>
+                        </div>
+                        <!-- Re-password -->
+                        <div class="row-element">
+                            <label class="form-label" for="register-rePassword">Confirm Password</label>
+                            <input type="password" class="form-control" name="register-rePassword" id="register-rePassword" placeholder="Confirm Password" aria-label="Confirm Password" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="margin"></div>
+                <div class="bg-secondary-soft px-4 py-5 rounded">
+                    <!-- First Name / Last Name -->
+                    <div class="row">
+                        <!-- First Name -->
+                        <div class="row-element">
+                            <label class="form-label" for="first-name">First Name</label>
+                            <input type="text" class="form-control" name="first-name" id="first-name" placeholder="Your first name" aria-label="First name" value="" required>
+                        </div>
+                        <!-- Last name -->
+                        <div class="row-element">
+                            <label class="form-label" for="last-name">Last Name</label>
+                            <input type="text" class="form-control" name="last-name" id="last-name" placeholder="Your last name" aria-label="Last name" value="" required>
+                        </div>
+                    </div>
+                    <!-- Gender / Birthday -->
+                    <div class="row">
+                        <!-- Gender -->
+                        <div class="row-element">
+                            <label class="form-label" for="gender">Gender</label>
+                            <select class="form-control" name="gender" id="gender" required>
+                                <option value="woman">Woman</option>
+                                <option value="man" selected>Man</option>
+                                <option value="other">Other</option>
+                              </select>
+                        </div>
+                        <!-- Birthday -->
+                        <div class="row-element">
+                            <label class="form-label">Birthday</label>
+                            <input type="date" class="form-control" name="szul-date" id="szul-date" value="" required>
+                        </div>
+                    </div>
+                    <!-- State / City -->
+					<div class="row">
+                        <!-- State -->
+                        <div class="row-element">
+                            <label class="form-label" for="state">State</label>
+                            <input type="text" class="form-control" name="state" id="state" placeholder="Your state" aria-label="Your state" value="" required>
+                        </div>
+                        <!-- City -->
+                        <div class="row-element">
+                            <label class="form-label" for="city">City</label>
+                            <input type="text" class="form-control" name="city" id="city" placeholder="Your city" aria-label="Your city" value="" required>
+                        </div>
+                    </div>
+                    <!-- School / Workplace -->
+                    <div class="row">
+                        <!-- School -->
+                        <div class="row-element">
+                            <label class="form-label" for="school">School</label>
+                            <input type="text" class="form-control" name="school" id="school" placeholder="Your school" aria-label="Your school" value="" required>
+                        </div>
+                        <!-- Workplace -->
+                        <div class="row-element">
+                            <label class="form-label" for="workplace">Workplace</label>
+                            <input type="text" class="form-control" name="workplace" id="workplace" placeholder="Your workplace" aria-label="Your workplace" value="" required>
+                        </div>
+                    </div>
+                </div>
+                <!-- Register / Login -->
+                <div class="row">
+                    <!-- Register -->
+                    <div class="row-element">
+                        <button type="submit">Register</button>
+                    </div>
+                    <!-- Login -->
+                    <div class="row-element">
+                        <span>Already have an account?</span>
+                        <a id="reg-login"><strong>Login</strong></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% if uInfo %}
+    <!---------- PROFIL MODAL ---------->
+    <div class="modal-profil">
+        <div class="card">
+            <h2>Your profile</h2>
+            <p class="text-muted">You can modify the informations about your profile</p>
+            <form class="profil-form" action="{{url_for('saveUserInfos')}}" method="POST" enctype="multipart/form-data">
+				<div class="bg-secondary-soft px-4 py-5 rounded">
+                    <div class="profil-picture">
+                        <label class="form-label" for="myfile">Profile picture</label>
+                        <img src="../static/images/profile-images/{{uInfo[7]}}" alt="profil picture">
+                        <input type="file" name="profileImage" id="profileImage">
+                    </div>
+                    <!-- First Name / Last Name -->
+                    <div class="row">
+                        <!-- First Name -->
+                        <div class="row-element">
+                            <label class="form-label" for="first-name">First Name</label>
+                            <input type="text" class="form-control" name="first-name" id="first-name" placeholder="Your first name" aria-label="First name" value="{{uInfo[3]}}">
+                        </div>
+                        <!-- Last name -->
+                        <div class="row-element">
+                            <label class="form-label" for="last-name">Last Name</label>
+                            <input type="text" class="form-control" name="last-name" id="last-name" placeholder="Your last name" aria-label="Last name" value="{{uInfo[4]}}">
+                        </div>
+                    </div>
+                    <!-- Gender / Birthday -->
+                    <div class="row">
+                        <!-- Gender -->
+                        <div class="row-element">
+                            <label class="form-label" for="gender">Gender</label>
+                            <select class="form-control" name="gender" id="gender" value="{{uInfo[5]}}">
+                                {% if uInfo[5] == "woman" %}
+                                <option value="woman" selected>Woman</option>
+                                <option value="man">Man</option>
+                                <option value="other">Other</option>
+                                {% elif uInfo[5] == "man" %}
+                                <option value="woman">Woman</option>
+                                <option value="man" selected>Man</option>
+                                <option value="other">Other</option>
+                                {% else %}
+                                <option value="woman">Woman</option>
+                                <option value="man">Man</option>
+                                <option value="other" selected>Other</option>
+                                {% endif %}
+                            </select>
+                        </div>
+                        <!-- Birthday -->
+                        <div class="row-element">
+                            <label class="form-label">Birthday</label>
+                            <input type="date" class="form-control" name="birthday" id="birthday" value="{{uInfo[6]}}">
+                        </div>
+                    </div>
+                    <!-- State / City -->
+					<div class="row">
+                        <!-- State -->
+                        <div class="row-element">
+                            <label class="form-label" for="state">State</label>
+                            <input type="text" class="form-control" name="state" id="state" placeholder="Your state" aria-label="Your state" value="{{uInfo[8]}}">
+                        </div>
+                        <!-- City -->
+                        <div class="row-element">
+                            <label class="form-label" for="city">City</label>
+                            <input type="text" class="form-control" name="city" id="city" placeholder="Your city" aria-label="Your city" value="{{uInfo[2]}}">
+                        </div>
+                    </div>
+                    <!-- School / Workplace -->
+                    <div class="row">
+                        <!-- School -->
+                        <div class="row-element">
+                            <label class="form-label" for="school">School</label>
+                            <input type="text" class="form-control" name="school" id="school" placeholder="Your school" aria-label="Your school" value="{{uInfo[9]}}">
+                        </div>
+                        <!-- Workplace -->
+                        <div class="row-element">
+                            <label class="form-label" for="workplace">Workplace</label>
+                            <input type="text" class="form-control" name="workplace" id="workplace" placeholder="Your workplace" aria-label="Your workplace" value="{{uInfo[10]}}">
+                        </div>
+                    </div>
+                </div>
+                <!-- Reset -->
+                <button type="reset" onclick="resetUInformations()">Reset</button>
+                <!-- Save -->
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+    {% if uData %}
+    <!---------- USER MODAL ---------->
+    <div class="modal-settings">
+        <div class="card">
+            <h2>Settings</h2>
+            <p class="text-muted">You can modify your user informations</p>
+            <form class="settings-form" action="{{url_for('modifyuser')}}" method="POST">
+				<div class="bg-secondary-soft px-4 py-5 rounded">
+                    <!-- Username / Email -->
+                    <div class="row">
+                        <!-- Username -->
+                        <div class="row-element">
+                            <label class="form-label" for="username">Username</label>
+                            <input type="text" class="form-control" name="username" id="username" placeholder="Your username" aria-label="Username" value="{{uData[1]}}">
+                        </div>
+                        <!-- Email -->
+                        <div class="row-element">
+                            <label class="form-label" for="email">Email</label>
+                            <input type="text" class="form-control" name="email" id="email" placeholder="Your email" aria-label="Email" value="{{uData[3]}}">
+                        </div>
+                    </div>
+                    <!-- Password / Re-password -->
+                    <div class="row">
+                        <!-- Password -->
+                        <div class="row-element">
+                            <label class="form-label" for="password">Password</label>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Your password" aria-label="Password" value="{{uData[2]}}">
+                        </div>
+                        <!-- Re-password -->
+                        <div class="row-element">
+                            <label class="form-label" for="re-password">Confirm password</label>
+                            <input type="password" class="form-control" name="re-password" id="re-password" placeholder="Your password" aria-label="Re-password" value="{{uData[2]}}">
+                        </div>
+                    </div>
+                </div>
+                <!-- Reset -->
+                <button type="reset" onclick="resetUData()">Reset</button>
+                <!-- Save -->
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+    <!---------- CREATE GROUP MODAL ---------->
+    <div class="modal-create-group">
+        <div class="card">
+            <h2>Create group</h2>
+            <p class="text-muted">Fill the informations about the group</p>
+            <form class="create-group-form" action="{{url_for('create_group')}}" method="POST" enctype="multipart/form-data">
+                <h4>Logo</h4>
+                <div class="bg-secondary-soft px-4 py-5 rounded">
+                    <div class="group-picture">
+                        <div class="row">
+                            <!-- Image -->
+                            <div class="row-element">
+                                <input type="file" name="group-logo" id="group-logo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="margin"></div>
+                <h4>Name</h4>
+				<div class="bg-secondary-soft px-4 py-5 rounded">
+                    <div class="row">
+                        <div class="row-element">
+                            <input class="form-control" type="text" name="create-group-name" id="create-group-name" placeholder="Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="margin"></div>
+                <h4>Description</h4>
+                <div class="bg-secondary-soft px-4 py-5 rounded">
+                    <div class="row">
+                        <!-- Description -->
+                        <div class="row-element">
+                            <input type="text" class="form-control" name="create-group-description" id="create-group-description" placeholder="Description" aria-label="Description">
+                        </div>
+                    </div>
+                </div>
+                <div class="margin"></div>
+                <button type="reset">Reset</button>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+    <!---------- CREATE ALBUM MODAL ---------->
+    <div class="modal-create-album">
+        <div class="card">
+            <h2>Create album</h2>
+            <p class="text-muted">Fill the informations about the album</p>
+            <form class="create-album-form" action="{{url_for('create_album')}}" method="POST" enctype="multipart/form-data">
+                <h4>Logo</h4>
+                <div class="bg-secondary-soft px-4 py-5 rounded">
+                    <div class="group-picture">
+                        <div class="row">
+                            <!-- Image -->
+                            <div class="row-element">
+                                <input type="file" name="album-logo" id="album-logo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="margin"></div>
+                <h4>Name</h4>
+				<div class="bg-secondary-soft px-4 py-5 rounded">
+                    <div class="row">
+                        <div class="row-element">
+                            <input class="form-control" type="text" name="create-album-name" id="create-album-name" placeholder="Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="margin"></div>
+                <button type="reset">Reset</button>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+    <!---------- ADD IMAGE MODAL ---------->
+    <div class="modal-add-image">
+        <div class="card">
+            <h2>Upload image</h2>
+            <p class="text-muted">Fill the informations about the image</p>
+            <form class="add-image-form" action="{{url_for('upload_image')}}" method="POST" enctype="multipart/form-data">
+                <h4>Logo</h4>
+                <div class="bg-secondary-soft px-4 py-5 rounded">
+                    <div class="group-picture">
+                        <div class="row">
+                            <!-- Image -->
+                            <div class="row-element">
+                                <input type="file" name="add-image-logo" id="add-image-logo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="margin"></div>
+                <h4>Name</h4>
+				<div class="bg-secondary-soft px-4 py-5 rounded">
+                    <div class="row">
+                        <div class="row-element">
+                            <input class="form-control" type="text" name="add-image-title" id="add-image-title" placeholder="Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="margin"></div>
+                <button type="reset">Reset</button>
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+    </div>
+    <!---------- ADD FRIEND MODAL ---------->
+    <div class="modal-add-friend">
+        <div class="card">
+            <h2>Add friend</h2>
+            <p class="text-muted">Type the person's username to add friend</p>
+            <form class="add_friend-form" action="{{url_for('add_friend')}}" method="POST">
+                <div class="bg-secondary-soft px-4 py-5 rounded">
+                    <!-- Username -->
+                    <div class="row">
+                        <!-- Username -->
+                        <div class="row-element">
+                            <label class="form-label" for="add-friend-username">Username</label>
+                            <input type="text" class="form-control" name="add-friend-username" id="add-friend-username" placeholder="Username" aria-label="Username">
+                        </div>
+                    </div>
+                </div>
+                <div class="margin"></div>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+</body>
+<footer>
+  {% block scripts %}
+  <script src="{{url_for('static', filename='scripts/home.js')}}"></script>
+  {% endblock %}
+</footer>
+</html>

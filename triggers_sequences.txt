@@ -1,0 +1,108 @@
+CREATE SEQUENCE felhaszn_seq
+  START WITH 1
+  INCREMENT BY 1
+  CACHE 10;
+
+CREATE OR REPLACE TRIGGER felhaszn_trig
+BEFORE INSERT ON "FELHASZNALOK"
+FOR EACH ROW
+BEGIN
+  SELECT felhaszn_seq.NEXTVAL INTO :NEW.id FROM dual;
+END;
+
+CREATE SEQUENCE seq_ismerosok_id
+  START WITH 1
+  INCREMENT BY 1
+  CACHE 10;
+  
+CREATE OR REPLACE TRIGGER ismerosok_id
+BEFORE INSERT
+ON ISMEROSOK
+FOR EACH ROW
+WHEN (NEW.id is null)
+BEGIN
+    SELECT seq_ismerosok_id.NEXTVAL INTO :NEW.id from dual;
+END;
+
+CREATE SEQUENCE profil_seq
+  START WITH 1
+  INCREMENT BY 1
+  CACHE 10;
+
+CREATE OR REPLACE TRIGGER profil_trig
+BEFORE INSERT ON "PROFILOK"
+FOR EACH ROW
+WHEN (NEW.id is null)
+BEGIN
+  SELECT profil_seq.NEXTVAL INTO :new.id FROM dual;
+  SELECT felhaszn_seq.CURRVAL INTO :NEW.felhasznalo_id FROM dual;
+END;
+
+CREATE SEQUENCE feltoltott_kepek_seq
+  START WITH 100
+  INCREMENT BY 1
+  CACHE 10;
+
+CREATE OR REPLACE TRIGGER feltoltott_kepek_trig
+BEFORE INSERT ON "FELTOLTOTT_KEPEK"
+FOR EACH ROW
+WHEN (NEW.id is null)
+BEGIN
+  SELECT feltoltott_kepek_seq.NEXTVAL INTO :new.id FROM dual;
+END;
+
+CREATE SEQUENCE albumok_seq
+  START WITH 100
+  INCREMENT BY 1
+  CACHE 10;
+
+CREATE OR REPLACE TRIGGER albumok_trig
+BEFORE INSERT ON "ALBUMOK"
+FOR EACH ROW
+WHEN (NEW.id is null)
+BEGIN
+  SELECT albumok_seq.NEXTVAL INTO :new.id FROM dual;
+END;
+
+CREATE SEQUENCE csoportok_seq
+  START WITH 1
+  INCREMENT BY 1
+  CACHE 10;
+
+CREATE OR REPLACE TRIGGER csoportok_trig
+BEFORE INSERT
+ON CSOPORTOK
+FOR EACH ROW
+WHEN (NEW.id is null)
+BEGIN
+    SELECT csoportok_seq.NEXTVAL INTO :NEW.id from dual;
+END;
+
+CREATE SEQUENCE csoport_tagok_seq
+  START WITH 1
+  INCREMENT BY 1
+  CACHE 10;
+  
+create or replace TRIGGER csoport_tagok_trig
+BEFORE INSERT
+ON CSOPORT_TAGOK
+FOR EACH ROW
+WHEN (NEW.id is null)
+BEGIN
+    SELECT csoport_tagok_seq.NEXTVAL INTO :NEW.id from dual;
+    SELECT CSOPORTOK_SEQ.CURRVAL INTO :NEW.csoport_id from dual;
+END;
+
+CREATE SEQUENCE album_kepek_seq
+  START WITH 1
+  INCREMENT BY 1
+  CACHE 10;
+  
+create or replace TRIGGER album_kepek_trig
+BEFORE INSERT
+ON ALBUM_KEPEK
+FOR EACH ROW
+WHEN (NEW.id is null)
+BEGIN
+    SELECT album_kepek_seq.NEXTVAL INTO :NEW.id from dual;
+END;

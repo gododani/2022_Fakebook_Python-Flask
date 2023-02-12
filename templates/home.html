@@ -1,0 +1,380 @@
+{% extends 'base.html' %}
+
+{% block title %}Fakebook{% endblock %}
+
+{% block content %}
+<main>
+    <div class="container">
+        <!---------- LEFT ---------->
+        <div class="left">
+            <!----- PROFILE ----->
+            {% if session['loggedin'] %}
+            <a class="profile">
+                <div class="profile-photo">
+                    <img src="../static/images/profile-images/{{session['profile-image']}}" alt="profile picture">
+                </div>
+                <div class="handle">
+                    <h4>{{session['vezeteknev']}} {{session['keresztnev']}}</h4>
+                </div>
+            </a>
+            {% endif %}
+            <!----- SIDEBAR ----->
+            <div class="sidebar">
+                {% if not session['loggedin'] %}
+                <!-- Login -->
+                <a class="menu-item" id="login">
+                    <span><i class="uil uil-sign-in-alt"></i></span><h3>Login</h3>
+                </a>
+                {% else %}
+                <!-- Home -->
+                <a class="menu-item active" id="home">
+                    <span><i class="uil uil-home"></i></span><h3>Home</h3>
+                </a>
+                <!-- Notifications -->
+                <!--<a class="menu-item" id="notifications">
+                    <span><i class="uil uil-bell"><small class="notification-count">4</small></i></span><h3>Notification</h3>
+                    Notification Popup
+                    <div class="notifications-popup">
+                        <div>
+                            <div class="profile-photo">
+                                <img src="{{ url_for('static', filename='images/profile-2.jpg')}}" alt="profile picture">
+                            </div>
+                            <div class="notification-body">
+                                <b>Lengyel Norbert</b> accepted your friend request
+                                <small class="text-muted">3 minutes ago</small>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="profile-photo">
+                                <img src="{{ url_for('static', filename='images/profile-3.jpg')}}" alt="profile picture">
+                            </div>
+                            <div class="notification-body">
+                                <b>Kósi Liza</b> Sent you a message
+                                <small class="text-muted">30 minutes ago</small>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="profile-photo">
+                                <img src="{{ url_for('static', filename='images/profile-3.jpg')}}" alt="profile picture">
+                            </div>
+                            <div class="notification-body">
+                                <b>Kósi Liza</b> commented on your post
+                                <small class="text-muted">1 hour ago</small>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="profile-photo">
+                                <img src="{{ url_for('static', filename='images/profile-4.jpg')}}" alt="profile picture">
+                            </div>
+                            <div class="notification-body">
+                                <b>Szél Zsuzsanna</b> Sent you a message
+                                <small class="text-muted">3 hour ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </a>-->
+                <!-- Messages -->
+                <a class="menu-item" id="messages-notifications">
+                    <span><i class="uil uil-envelope-alt"><small class="notification-count">2</small></i></span><h3>Messages</h3>
+                </a>
+                <!-- Friends -->
+                <a class="menu-item" id="friends">
+                    <span><i class="uil uil-user"></i></span><h3>Friends</h3>
+                </a>
+                <!-- Groups -->
+                <a class="menu-item" id="groups">
+                    <span><i class="uil uil-users-alt"></i></span><h3>Groups</h3>
+                </a>
+                <!-- Images -->
+                <a class="menu-item" id="images">
+                    <span><i class="uil uil-image"></i></span><h3>Images</h3>
+                </a>
+                <!-- Albums -->
+                <a class="menu-item" id="albums">
+                    <span><i class="uil uil-images"></i></span><h3>Albums</h3>
+                </a>
+                <!-- Themes -->
+                <a class="menu-item" id="theme">
+                    <span><i class="uil uil-palette"></i></span><h3>Themes</h3>
+                </a>
+                <!-- Profil -->
+                <a class="menu-item" id="profil">
+                    <span><i class="uil uil-user-circle"></i></i></span><h3>Profile</h3>
+                </a>
+                <a class="menu-item" id="settings">
+                    <span><i class="uil uil-setting"></i></span><h3>User</h3>
+                </a>
+                <!-- Logout -->
+                <a class="menu-item" href="/logout">
+                    <span><i class="uil uil-sign-out-alt"></i></span><h3>Logout</h3>
+                </a>
+                {% endif %}
+            </div>
+            {% if session['loggedin'] %}
+                <label class="btn btn-primary" id="create-post-notification2" for="create-post">Create Post</label>
+            {% endif %}
+        </div>
+        <!---------- MIDDLE ---------->
+        <div class="middle">
+            {% if session['loggedin'] %}
+            <div class="middle-home">
+                <!----- CREATE POST----->
+                <div class="c-post">
+                    <form class="create-post">
+                        <div class="profile-photo">
+                            <img src="../static/images/profile-images/{{session['profile-image']}}" alt="profile picture">
+                        </div>
+                        <input type="text" placeholder="What's on your mind today?" id="create-post">
+                        <input class="btn btn-primary" type="submit" value="Post">
+                    </form>
+                </div>
+                <!----- FEEDS ----->
+                <div class="feeds">
+                    {% if feeds %}
+                    {% for feed in feeds %}
+                    <!-- FEED 1-->
+                    <div class="feed">
+                        <div class="head">
+                            <div class="user">
+                                <div class="profile-photo">
+                                    <img src="../static/images/profile-images/{{feed[6]}}" alt="profile picture">
+                                </div>
+                                <div class="info">
+                                    <h3>{{feed[2]}} {{feed[3]}}</h3>
+                                    <small>{{feed[7]}}, </small>
+                                </div>
+                            </div>
+                            <span class="edit">
+                                <i class="uil uil-ellipsis-h"></i>
+                            </span>
+                        </div>
+
+                        <div class="photo">
+                            <img src="../static/images/user-images/{{feed[14]}}" alt="posted picture">
+                        </div>
+
+                        <div class="action-buttons">
+                            <div class="interaction-buttons">
+                                <span><i class="uil uil-thumbs-up"></i></span>
+                                <span><i class="uil uil-comment-alt"></i></span>
+                                <span><i class="uil uil-share-alt"></i></span>
+                            </div>
+                            <div class="bookmark">
+                                <span><i class="uil uil-bookmark-full"></i></span>
+                            </div>
+                        </div>
+                    <div class="comments text-muted">View all 4 comments</div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+            <a class="btn btn-primary" id="add_friend">Add friend</a>
+            <!----- FRIENDS ----->
+            <div class="middle-friends">
+                {% if uFriends %}
+                {% for friend in uFriends %}
+                {% set img_path = '../static/images/profile-images/' + friend[6] %}
+                <div class="card">
+                    <img src="{{img_path}}" alt="profile picture">
+                    <span>{{friend[3]}} {{friend[2]}}</span>
+                    <form action="/delete_friend" method="POST"><button type="submit" name="friend-id" id="friend-id" value="{{friend[0]}}">Remove friend</button></form>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <a class="btn btn-primary" id="create_group">Create group</a>
+            <!----- GROUPS ----->
+            <div class="middle-groups">
+                {% if uGroups %}
+                {% for group in uGroups %}
+                <div class="card">
+                    <img src="../static/images/group-images/{{group[3]}}" alt="group picture">
+                    <span>{{group[1]}}</span>
+                    <div class="buttons">
+                        <form action="{{url_for('modify_group')}}" method="POST">
+                            <button id="group" type="submit" name="mod-group-id" id="mod-group-id" value="{{group[0]}}">Info</button>
+                        </form>
+                        <form action="{{url_for('leave_group')}}" method="POST"><button class="leave" type="submit" name="group-id" id="group-id" value="{{group[0]}}">Leave</button></form>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <a class="btn btn-primary" id="upload_img">Upload image</a>
+            <!----- IMAGES----->
+            <div class="middle-images">
+            {% if uImages %}
+            {% for image in uImages %}
+            {% set img_path = '../static/images/user-images/' + image[2] %}
+                <div class="card">
+                    <img src="{{img_path}}" alt="Picture">
+                    <span>{{image[4]}}</span>
+                    <div class="buttons">
+                        <form action="{{url_for('modify_image_modal')}}" method="POST">
+                            <button id="image-modify" type="submit" name="mod-user-image-id" id="mod-user-image-id" value="{{image[0]}}">Modify</button>
+                        </form>
+                        <form action="{{url_for('delete_user_image')}}" method="POST">
+                            <button class="card-delete" type="submit" name="user-image-id" id="user-image-id" value="{{image[0]}}">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+            {% endif %}
+            </div>
+            <a class="btn btn-primary" id="create_album">Create album</a>
+            <!----- ALBUMS----->
+            <div class="middle-albums">
+            {% if uAlbums %}
+            {% for album in uAlbums %}
+            {% set img_path = '../static/images/album-images/' + album[4] %}
+                <div class="card">
+                    <img src="{{img_path}}" alt="profile picture">
+                    <span>{{album[2]}}</span>
+                    <div class="buttons">
+                        <form action="{{url_for('modify_album_modal')}}" method="POST">
+                            <button id="album" type="submit" name="mod-album-id" id="mod-album-id" value="{{album[0]}}">Info</button>
+                        </form>
+                        <form action="{{url_for('delete_user_album')}}" method="POST"><button class="delete" type="submit" name="album-id" id="album-id" value="{{album[0]}}">Delete</button></form>
+                    </div>
+                </div>
+            {% endfor %}
+            {% endif %}
+            </div>
+        </div>
+        
+        <!---------- RIGHT ---------->
+        <div class="right">
+            {% if session['loggedin'] %}
+            <!-- Messages -->
+            <div class="messages">
+                <!-- Head -->
+                <div class="heading">
+                    <h4>Messages</h4><i class="uil uil-edit"></i>
+                </div>
+                
+                <!-- Search Bar -->
+                <div class="search-bar">
+                    <i class="uil uil-search"></i>
+                    <input type="search" placeholder="Search messages" id="message-search">
+                </div>
+                <!-- Message Bar -->
+                <div class="message-bar">
+                    <!-- MESSAGES CATEGORY -->
+                    <div class="category">
+                        <h6 class="active" id="personal-chat">Personal</h6>
+                        <h6 id="group-chat">Group</h6>
+                        <h6 class="message-requests" id="request-chat">Requests (<span>
+                            {% if messReqNumb %}
+                            {{messReqNumb}}
+                            {% else %}
+                            0
+                            {% endif %}
+                        </span>)</h6>
+                    </div>
+                    <!-- PERSONAL MESSAGES -->
+                    <div class="personal-messages">
+                        {% if uPersonalMessages %}
+                        {% for message in uPersonalMessages %}
+                        {% set img_path = '../static/images/profile-images/' + message[3] %}
+                        <!-- MESSAGE 1-->
+                        <a href="{{url_for('chat')}}">
+                            <div class="message">
+                                <div class="profile-photo">
+                                    <img src="{{img_path}}" alt="profile picture">
+                                </div>
+                                <div class="message-body">
+                                    <h5>{{message[1]}} {{message[2]}}</h5>
+                                    <p class="text-muted">{{message[9]}}</p>
+                                </div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="group-messages">
+                        <!-- GROUP 1-->
+                        <div class="message">
+                            <div class="profile-photo">
+                                <img src="{{ url_for('static', filename='images/logo.png')}}" alt="group picture">
+                            </div>
+                            <div class="message-body">
+                                <h5>Alfa</h5>
+                                <p class="text-muted">ok</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% if uMessageRequests %}
+                    <!-- REQUESTS MESSAGES -->
+                    <div class="request-messages">
+                    {% for request in uMessageRequests %}
+                        <!-- REQUEST 1-->
+                        <div class="message">
+                            <div class="profile-photo">
+                                <img src="../static/images/profile-images/{{request[6]}}" alt="request picture">
+                            </div>
+                            <div class="message-body">
+                                <h5>{{request[2]}} {{request[3]}}</h5>
+                                <p class="text-muted">Want to send you messages</p>
+                            </div>
+                            <div class="action">
+                                <form action="/acc_decl_mess_req" method="POST">
+                                    <input name="id" id="id" value="{{request[0]}}" hidden>
+                                    <button type="submit" class="btn btn-primary"  name="accept" id="accept" value="accept">
+                                        Accept
+                                    </button>
+                                </form>
+                                <form action="/acc_decl_mess_req" method="POST">
+                                    <input name="id" id="id" value="{{request[0]}}" hidden>
+                                    <button type="submit" class="btn" name="decline" id="decline" value="decline">
+                                        Decline
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    {% endif %}
+                {% endif %}
+                </div>
+            </div>
+            {% if uFriendRequests %}
+            <!-- Friend Requests -->
+            <div class="friend-requests">
+                <h4>Friend requests</h4>
+                {% for request in uFriendRequests %}
+                <!-- Friend Request 1-->
+                <div class="request">
+                    <div class="info">
+                        <div class="profile-photo">
+                            <img src="../static/images/profile-images/{{request[6]}}" alt="profile picture">
+                        </div>
+                        <div>
+                            <h5>{{request[2]}} {{request[3]}}</h5>
+                            <p class="text-muted">
+                                2 mutual friends
+                            </p>
+                        </div>
+                    </div>
+                    <div class="action">
+                        <form action="/acc_decl_fr_req" method="POST">
+                            <input name="id" id="id" value="{{request[0]}}" hidden>
+                            <button type="submit" class="btn btn-primary"  name="accept" id="accept" value="accept">
+                                Accept
+                            </button>
+                        </form>
+                        <form action="/acc_decl_fr_req" method="POST">
+                            <input name="id" id="id" value="{{request[0]}}" hidden>
+                            <button type="submit" class="btn" name="decline" id="decline" value="decline">
+                                Decline
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</main>
+{% endblock %}

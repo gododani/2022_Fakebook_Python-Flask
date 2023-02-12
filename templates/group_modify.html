@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Fakebook - group{% endblock %}
+
+{% block content %}
+{% if group %}
+<!---------- GROUP MODAL ---------->
+<div class="modal-group">
+    <div class="card">
+        <h2>{{group[1]}}</h2>
+        <p class="text-muted">Informations about the group</p>
+        <form class="group-form" action="{{url_for('group_infos_modify')}}" method="POST" enctype="multipart/form-data">
+            <h4>Group logo</h4>
+            <div class="bg-secondary-soft px-4 py-5 rounded">
+                <div class="group-picture">
+                    <img src="../static/images/group-images/{{group[3]}}" alt="profil picture">
+                    <input type="file" name="group-modify-image-file" id="group-modify-image-file">
+                </div>
+            </div>
+            <div class="margin"></div>
+            <h4>Description</h4>
+            <div class="bg-secondary-soft px-4 py-5 rounded">
+                <div class="row">
+                    <div class="row-element">
+                        <input type="text" class="form-control" name="group-modify-desc" id="group-modify-desc" placeholder="Description" aria-label="Description" value="{{group[2]}}">
+                    </div>
+                </div>
+                </div>
+            <div class="margin"></div>
+            <button type="submit" name="modify-group-id" id="modify-group-id" value="{{group[0]}}">Update</button>
+        </form>
+        {% if groupMembers %}
+        <div class="row">
+            <div class="row-element">
+                <div class="bg-secondary-soft px-4 py-5 rounded">
+                    <div class="row">
+                        {% for member in groupMembers %}
+                        <!-- Member -->
+                        <div class="row-element">
+                            <span class="profile">
+                                <div class="profile-photo">
+                                    <img src="../static/images/profile-images/{{member[6]}}" alt="profile picture">
+                                </div>
+                                <div class="handle">
+                                    <h4>{{member[2]}} {{member[3]}}</h4>
+                                </div>
+                                {% if role == "Admin" %}
+                                <form class="group-form" action="{{url_for('delete_member_from_group')}}" method="POST">
+                                    <div class="buttons">
+                                        <button class="card-delete" type="submit" name="delete-member-id" id="delete-member-id" value="{{member[12]}}">Remove</button>
+                                    </div>
+                                </form> 
+                                {% endif %}
+                            </span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="margin"></div>
+        {% endif %}
+        <div class="row">
+            <div class="row-element">
+                {% if role == "Admin" %}
+                <form class="group-form" action="{{url_for('add_user_to_group')}}" method="POST">
+                    <h4>Add member</h4>
+                    <div class="bg-secondary-soft px-4 py-5 rounded">
+                        <div class="row">
+                            <div class="row-element">
+                                <label class="form-label" for="add-group-username">Username</label>
+                                <input type="text" class="form-control" name="add-group-username" id="add-group-username" placeholder="Username" aria-label="Username">
+                            </div>
+                        </div>
+                        <div class="margin"></div>
+                        <button type="submit" name="add-group-id" id="add-group-id" value="{{group[0]}}">Add member</button>
+                    </div>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
