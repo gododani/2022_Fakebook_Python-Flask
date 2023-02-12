@@ -1,4 +1,4 @@
-1) xampp - apache -> open xampp/php/php.init-> remove semicolons before extension=oci8_12c and extension=pdo_oci
+1) download xampp and open it - apache -> open xampp/php/php.init-> remove semicolons before extension=oci8_12c and extension=pdo_oci
 
 2) download cx_Oracle modul- pip install cx_Oracle --upgrade
 
